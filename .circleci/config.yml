@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: Build Binaries
-          command: flutter build apk --release;mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/FlutterTemplate-release-${CIRCLE_BUILD_NUM}.apk
+          command: flutter build apk --build-name="1.0.0" --build-number=${CIRCLE_BUILD_NUM} --release;mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/FlutterTemplate-release-${CIRCLE_BUILD_NUM}.apk
       - store_artifacts:
           path: build/app/outputs/flutter-apk
           destination: apk
