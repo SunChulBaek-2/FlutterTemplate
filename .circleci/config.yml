@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: currusci/flutter
-    steps
+    steps:
       - checkout
       - run: flutter build apk --release
       - store_artifacts:
