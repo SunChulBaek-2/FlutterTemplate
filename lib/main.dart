@@ -14,7 +14,7 @@ class MyHttpOverrides extends HttpOverrides {
 
 void main() {
   BlocObserver observer = CounterObserver();
-  //HttpOverrides.global = MyHttpOverrides();
+  HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 }
 
