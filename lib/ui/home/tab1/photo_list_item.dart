@@ -29,19 +29,6 @@ class PhotoListItem extends StatelessWidget {
           )
         ],
       )
-      // child: ListTile(
-      //   leading: CachedNetworkImage(
-      //     width: 32,
-      //     height: 32,
-      //     // TODO : jsonplaceholder의 이미지 로딩 안됨.
-      //     //imageUrl: photo.thumbnailUrl,
-      //     imageUrl: 'https://picsum.photos/250?image=9',
-      //     placeholder: (context, url) => const CircularProgressIndicator(),
-      //     errorWidget: (context, url, error) => const Icon(Icons.error),
-      //   ),
-      //   title: Text(photo.title),
-      //   dense: true,
-      // )
     );
   }
 }
