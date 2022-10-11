@@ -9,20 +9,39 @@ class PhotoListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: ListTile(
-        leading: CachedNetworkImage(
-          width: 32,
-          height: 32,
-          // TODO : jsonplaceholder의 이미지 로딩 안됨.
-          imageUrl: photo.thumbnailUrl,
-          //imageUrl: 'https://www.gstatic.com/devrel-devsite/prod/v24d520161c9661e427a3f6fa9973bfca56d0972dca82fa8ef65c709d915e80f3/android/images/touchicon-180.png',
-          placeholder: (context, url) => const CircularProgressIndicator(),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
-        ),
-        title: Text(photo.title),
-        dense: true,
+    return Card(
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+      child: Row(
+        children: [
+          CachedNetworkImage(
+            width: 100,
+            height: 100,
+            // TODO : jsonplaceholder의 이미지 로딩 안됨.
+            //imageUrl: photo.thumbnailUrl,
+            imageUrl: 'https://picsum.photos/250?image=9',
+            placeholder: (context, url) => const CircularProgressIndicator(),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(photo.title)
+          )
+        ],
       )
+      // child: ListTile(
+      //   leading: CachedNetworkImage(
+      //     width: 32,
+      //     height: 32,
+      //     // TODO : jsonplaceholder의 이미지 로딩 안됨.
+      //     //imageUrl: photo.thumbnailUrl,
+      //     imageUrl: 'https://picsum.photos/250?image=9',
+      //     placeholder: (context, url) => const CircularProgressIndicator(),
+      //     errorWidget: (context, url, error) => const Icon(Icons.error),
+      //   ),
+      //   title: Text(photo.title),
+      //   dense: true,
+      // )
     );
   }
 }

@@ -44,11 +44,8 @@ class Tab1PageState extends State<Tab1Page> {
                   if (state.photos.isEmpty) {
                     return const Center(child: Text('no photos'));
                   }
-                  return ListView.separated(itemBuilder: (BuildContext context, int index) {
+                  return ListView.builder(itemBuilder: (BuildContext context, int index) {
                       return index >= state.photos.length ? const BottomLoader() : PhotoListItem(photo: state.photos[index]);
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return const Divider(thickness: 1);
                     },
                     itemCount: state.photos.length,
                     controller: _scrollController

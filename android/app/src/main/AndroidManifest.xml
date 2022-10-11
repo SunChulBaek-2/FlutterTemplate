@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:label="flutter_template"
+        android:label="템플릿F"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
