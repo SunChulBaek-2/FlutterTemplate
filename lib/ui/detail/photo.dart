@@ -19,7 +19,11 @@ class PhotoScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: <Widget>[
-            CachedNetworkImage(imageUrl: param.url),
+            CachedNetworkImage(
+              imageUrl: param.url,
+              width: double.infinity,
+              fit: BoxFit.cover
+            ),
             Text(param.title)
           ],
         )
