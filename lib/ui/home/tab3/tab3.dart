@@ -1,5 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_template/cubit/counter_cubit.dart';
+import 'package:flutter_template/ui/home/tab3/counter_view.dart';
 
 class Tab3Page extends StatefulWidget {
   const Tab3Page({Key? key}) : super(key: key);
@@ -11,18 +13,10 @@ class Tab3Page extends StatefulWidget {
 class Tab3PageState extends State<Tab3Page> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Text("Tab3"),
-          CachedNetworkImage(
-            imageUrl: 'https://i.picsum.photos/id/7/250/250.jpg?hmac=cvSu7nF39jvX2EdUAeTtQYVgXO3TIVe5DBR21R_z7K8',
-            placeholder: (context, url) => const CircularProgressIndicator(),
-            errorWidget: (context, url, error) => Text(error.toString()),
-          )
-        ],
-      )
+
+    return BlocProvider(
+        create: (_) => CounterCubit(),
+        child: const CounterView()
     );
   }
 }
