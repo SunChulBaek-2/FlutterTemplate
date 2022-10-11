@@ -43,12 +43,12 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
       }
       final photos = await _fetchPhotos(state.photos.length);
       emit(photos.isEmpty
-          ? state.copyWith(hasReachedMax: true)
-          : state.copyWith(
-              status: PhotosStatus.success,
-              photos: List.of(state.photos)..addAll(photos),
-              hasReachedMax: false
-            ));
+        ? state.copyWith(hasReachedMax: true)
+        : state.copyWith(
+          status: PhotosStatus.success,
+          photos: List.of(state.photos)..addAll(photos),
+          hasReachedMax: false
+        ));
     } catch (e) {
       emit(state.copyWith(status: PhotosStatus.failure));
     }

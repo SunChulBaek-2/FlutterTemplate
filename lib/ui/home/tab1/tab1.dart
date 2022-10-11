@@ -31,28 +31,28 @@ class Tab1PageState extends State<Tab1Page> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => PhotosBloc(httpClient: http.Client())..add(PhotosFetched()),
-        child: BlocBuilder<PhotosBloc, PhotosState>(
-            builder: (context, state) {
-              switch (state.status) {
-                case PhotosStatus.initial:
-                  return const Center(child: CircularProgressIndicator());
-                case PhotosStatus.failure:
-                  // TODO : 에러 화면
-                  return Text('failure');
-                case PhotosStatus.success:
-                  if (state.photos.isEmpty) {
-                    return const Center(child: Text('no photos'));
-                  }
-                  return ListView.builder(itemBuilder: (BuildContext context, int index) {
-                      return index >= state.photos.length ? const BottomLoader() : PhotoListItem(photo: state.photos[index]);
-                    },
-                    itemCount: state.photos.length,
-                    controller: _scrollController
-                  );
+      create: (_) => PhotosBloc(httpClient: http.Client())..add(PhotosFetched()),
+      child: BlocBuilder<PhotosBloc, PhotosState>(
+        builder: (context, state) {
+          switch (state.status) {
+            case PhotosStatus.initial:
+              return const Center(child: CircularProgressIndicator());
+            case PhotosStatus.failure:
+              // TODO : 에러 화면
+              return Text('failure');
+            case PhotosStatus.success:
+              if (state.photos.isEmpty) {
+                return const Center(child: Text('no photos'));
               }
-            }
-        )
+              return ListView.builder(itemBuilder: (BuildContext context, int index) {
+                  return index >= state.photos.length ? const BottomLoader() : PhotoListItem(photo: state.photos[index]);
+                },
+                itemCount: state.photos.length,
+                controller: _scrollController
+              );
+          }
+        }
+      )
     );
   }
 

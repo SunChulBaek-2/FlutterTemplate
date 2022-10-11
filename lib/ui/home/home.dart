@@ -35,25 +35,25 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: SafeArea(
-            child: _tabs.elementAt(_selectedIndex).widget
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: _tabs.map((tab) => BottomNavigationBarItem(
-              icon: Icon(tab.icon),
-              activeIcon: Icon(tab.activeIcon),
-              label: tab.label
-          )).toList(),
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.blue,
-          showSelectedLabels: true,
-          unselectedItemColor: Colors.grey,
-          showUnselectedLabels: true,
-          onTap: (int index) { setState(() { _selectedIndex = index; }); },
-        )
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: SafeArea(
+        child: _tabs.elementAt(_selectedIndex).widget
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: _tabs.map((tab) => BottomNavigationBarItem(
+          icon: Icon(tab.icon),
+          activeIcon: Icon(tab.activeIcon),
+          label: tab.label
+        )).toList(),
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue,
+        showSelectedLabels: true,
+        unselectedItemColor: Colors.grey,
+        showUnselectedLabels: true,
+        onTap: (int index) { setState(() { _selectedIndex = index; }); },
+      )
     );
   }
 }
