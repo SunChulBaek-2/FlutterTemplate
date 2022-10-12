@@ -13,7 +13,7 @@ class PhotoListItem extends StatelessWidget {
     return Card(
       clipBehavior: Clip.antiAliasWithSaveLayer,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-      child: GestureDetector(
+      child: InkWell(
         child: Row(
           children: [
             CachedNetworkImage(
