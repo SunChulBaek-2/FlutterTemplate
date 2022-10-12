@@ -13,6 +13,7 @@ class Tab {
   Tab(this.icon, this.activeIcon, this.label, this.widget);
 }
 
+// 참고 : https://dopble2k.tistory.com/9
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -24,6 +25,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
+  PageController pageController = PageController();
 
   final List<Tab> _tabs = <Tab>[
     Tab(Icons.home_outlined, Icons.home, '탭1', Tab1Page()),
@@ -39,7 +41,16 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: SafeArea(
-        child: _tabs.elementAt(_selectedIndex).widget
+        child: PageView(
+          controller: pageController,
+          onPageChanged: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
+          physics: const NeverScrollableScrollPhysics(),
+          children: _tabs.map((e) => e.widget).toList(),
+        )
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: _tabs.map((tab) => BottomNavigationBarItem(
@@ -52,7 +63,14 @@ class _MyHomePageState extends State<MyHomePage> {
         showSelectedLabels: true,
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
-        onTap: (int index) { setState(() { _selectedIndex = index; }); },
+        onTap: (int index) { setState(() {
+          _selectedIndex = index;
+          pageController.animateToPage(
+              index,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeOut
+          );
+        }); },
       )
     );
   }

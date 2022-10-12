@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_template/ui/home/tab_page.dart';
 import 'package:flutter_template/bloc/photos_bloc.dart';
 import 'package:flutter_template/ui/home/tab1/bottom_loader.dart';
 import 'package:flutter_template/ui/home/tab1/photo_list_item.dart';
-import 'package:flutter_template/ui/home/tab_page.dart';
 import 'package:http/http.dart' as http;
 
-class Tab1Page extends TabPage {
+class Tab1Page extends StatefulWidget {
   const Tab1Page({Key? key}) : super(key: key);
 
   @override
+  State<StatefulWidget> createState() => _Tab1State();
+}
+
+class _Tab1State extends TabState<Tab1Page> {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocProvider(
         create: (_) => PhotosBloc(httpClient: http.Client())..add(PhotosFetched()),
         child: BlocBuilder<PhotosBloc, PhotosState>(
