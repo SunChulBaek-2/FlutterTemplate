@@ -1,26 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/event/bottom_nav_item_reselect_event.dart';
-import 'package:flutter_template/main.dart';
 import 'package:flutter_template/ui/home/tab_page.dart';
 
-class Tab4Page extends StatefulWidget {
-  const Tab4Page({Key? key}) : super(key: key);
+class Tab4Page extends TabPage {
+  const Tab4Page({Key? key, required int index}) : super(key: key, index: index);
 
   @override
   State<StatefulWidget> createState() => _Tab4State();
 }
 
 class _Tab4State extends TabState<Tab4Page> {
-  @override
-  void initState() {
-    super.initState();
-    eventBus.on<BottomNavItemReselectEvent>().listen((event) {
-      if (event.index == 4) {
-        showSnackBar(context, "Tab4 리셀렉~");
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -32,12 +20,18 @@ class _Tab4State extends TabState<Tab4Page> {
             ElevatedButton(
                 onPressed: () {
                   // 스낵바 호출
-                  showSnackBar(context, '탭4!!!');
+                  showSnackBar('탭4!!!');
                 },
                 child: const Text('Show SnackBar')
             ),
           ],
         )
     );
+  }
+
+  @override
+  void onDoubleTap() {
+    // TabPage.index에 해당하는 탭의 더블탭 이벤트를 받음
+    showSnackBar("탭4 리셀렉~");
   }
 }

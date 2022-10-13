@@ -29,11 +29,12 @@ class _HomeState extends State<HomeScreen> {
   int _selectedIndex = 0;
   PageController pageController = PageController();
 
+  // index에 해당하는 더블탭 이벤트를 받음
   final List<Tab> _tabs = <Tab>[
-    Tab(Icons.home_outlined, Icons.home, '탭1', Tab1Page()),
-    Tab(Icons.business_outlined, Icons.business, '탭2', Tab2Page()),
-    Tab(Icons.school_outlined, Icons.school, '탭3', Tab3Page()),
-    Tab(Icons.settings_outlined, Icons.settings, '탭4', Tab4Page())
+    Tab(Icons.home_outlined, Icons.home, '탭1', const Tab1Page(index: 0)),
+    Tab(Icons.business_outlined, Icons.business, '탭2', const Tab2Page(index: 1)),
+    Tab(Icons.school_outlined, Icons.school, '탭3', const Tab3Page(index: 2)),
+    Tab(Icons.settings_outlined, Icons.settings, '탭4', const Tab4Page(index: 3))
   ];
 
   DateTime? currentBackPressTime;
@@ -49,7 +50,8 @@ class _HomeState extends State<HomeScreen> {
         return Future.value(false);
       }
       return Future.value(true);
-    }, child: Scaffold(
+    },
+    child: Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -78,7 +80,7 @@ class _HomeState extends State<HomeScreen> {
         showUnselectedLabels: true,
         onTap: (int index) { setState(() {
           if (_selectedIndex == index) {
-            eventBus.fire(BottomNavItemReselectEvent(index + 1));
+            eventBus.fire(BottomNavItemReselectEvent(index));
           } else {
             _selectedIndex = index;
             pageController.animateToPage(

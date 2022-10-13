@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/event/bottom_nav_item_reselect_event.dart';
+import 'package:flutter_template/main.dart';
 
-abstract class TabPage extends StatelessWidget {
-  const TabPage({Key? key}) : super(key: key);
+abstract class TabPage extends StatefulWidget {
+  const TabPage({Key? key, required this.index}) : super(key: key);
 
-  void showSnackBar(BuildContext context, String text) {
-    var snackBar = SnackBar(content: Text(text));
-    ScaffoldMessenger.of(context).removeCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
+  final int index;
 }
 
-abstract class TabState<T extends StatefulWidget> extends State<T>
+abstract class TabState<T extends TabPage> extends State<T>
     with AutomaticKeepAliveClientMixin {
 
-  void showSnackBar(BuildContext context, String text) {
+  @override
+  void initState() {
+    super.initState();
+    eventBus.on<BottomNavItemReselectEvent>().listen((event) {
+      if (event.index == widget.index) {
+        onDoubleTap();
+      }
+    });
+  }
+
+  void showSnackBar(String text) {
     var snackBar = SnackBar(content: Text(text));
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -21,4 +29,6 @@ abstract class TabState<T extends StatefulWidget> extends State<T>
 
   @override
   bool get wantKeepAlive => true;
+
+  void onDoubleTap() { }
 }

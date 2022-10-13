@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/event/bottom_nav_item_reselect_event.dart';
-import 'package:flutter_template/main.dart';
 import 'package:flutter_template/ui/home/tab_page.dart';
 import 'package:flutter_template/bloc/photos_bloc.dart';
 import 'package:flutter_template/ui/home/tab1/bottom_loader.dart';
 import 'package:flutter_template/ui/home/tab1/photo_list_item.dart';
 import 'package:http/http.dart' as http;
 
-class Tab1Page extends StatefulWidget {
-  const Tab1Page({Key? key}) : super(key: key);
+class Tab1Page extends TabPage {
+  const Tab1Page({Key? key, required int index}) : super(key: key, index: index);
 
   @override
   State<StatefulWidget> createState() => _Tab1State();
@@ -23,11 +21,6 @@ class _Tab1State extends TabState<Tab1Page> {
     super.initState();
     _photosBloc = PhotosBloc(httpClient: http.Client());
     _photosBloc.add(PhotosFetched());
-    eventBus.on<BottomNavItemReselectEvent>().listen((event) {
-      if (event.index == 1) {
-        showSnackBar(context, "Tab1 리셀렉~");
-      }
-    });
   }
 
   @override
@@ -56,7 +49,7 @@ class _Tab1State extends TabState<Tab1Page> {
                       itemCount: state.photos.length,
                     ),
                     onRefresh: () async {
-                      showSnackBar(context, "리프레시!!!");
+                      showSnackBar("리프레시!!!");
                       final photosBloc = BlocProvider.of<PhotosBloc>(context);
                       photosBloc.add(PhotosFetched());
                     }
@@ -65,5 +58,11 @@ class _Tab1State extends TabState<Tab1Page> {
             }
         )
     );
+  }
+
+  @override
+  void onDoubleTap() {
+    // TabPage.index에 해당하는 탭의 더블탭 이벤트를 받음
+    showSnackBar("탭1 리셀렉~");
   }
 }
