@@ -12,6 +12,8 @@ class Tab2Page extends StatefulWidget {
 }
 
 class _Tab2State extends TabState<Tab2Page> {
+  bool isLoading = true;
+
   @override
   void initState() {
     super.initState();
@@ -23,8 +25,18 @@ class _Tab2State extends TabState<Tab2Page> {
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return const WebView(
-        initialUrl: "https://www.google.com"
+    return Stack(
+      children: <Widget>[
+        WebView(
+          initialUrl: "https://www.google.com",
+          onPageFinished: (url) {
+            setState(() {
+              isLoading = false;
+            });
+          },
+        ),
+        isLoading ? const Center(child: CircularProgressIndicator()) : Stack()
+      ]
     );
   }
 }
