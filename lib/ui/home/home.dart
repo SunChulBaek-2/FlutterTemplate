@@ -68,6 +68,8 @@ class _HomeState extends State<HomeScreen> {
         )
       ),
       bottomNavigationBar: BottomNavigationBar(
+        // 하단탭 선택 시 꿀렁꿀렁한 애니메이션 제거
+        type: BottomNavigationBarType.fixed,
         items: _tabs.map((tab) => BottomNavigationBarItem(
           icon: Icon(tab.icon),
           activeIcon: Icon(tab.activeIcon),
