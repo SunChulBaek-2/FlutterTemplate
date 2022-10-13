@@ -15,6 +15,7 @@ class Tab1Page extends TabPage {
 
 class _Tab1State extends TabState<Tab1Page> {
   late PhotosBloc _photosBloc;
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -41,8 +42,10 @@ class _Tab1State extends TabState<Tab1Page> {
                     return const Center(child: Text('No photos'));
                   }
                   return RefreshIndicator(
-                    child: ListView.builder(itemBuilder: (BuildContext context, int index) {
-                      return index >= state.photos.length
+                    child: ListView.builder(
+                      controller: _scrollController,
+                      itemBuilder: (BuildContext context, int index) {
+                        return index >= state.photos.length
                           ? const BottomLoader()
                           : PhotoListItem(photo: state.photos[index]);
                       },
@@ -64,5 +67,10 @@ class _Tab1State extends TabState<Tab1Page> {
   void onDoubleTap() {
     // TabPage.index에 해당하는 탭의 더블탭 이벤트를 받음
     showSnackBar("탭1 리셀렉~");
+    _scrollController.animateTo(
+        _scrollController.position.minScrollExtent,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.fastOutSlowIn
+    );
   }
 }
