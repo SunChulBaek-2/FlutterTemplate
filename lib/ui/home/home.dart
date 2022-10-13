@@ -3,7 +3,6 @@ import 'package:flutter_template/ui/home/tab1/tab1.dart';
 import 'package:flutter_template/ui/home/tab2/tab2.dart';
 import 'package:flutter_template/ui/home/tab3/tab3.dart';
 import 'package:flutter_template/ui/home/tab4/tab4.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class Tab {
   IconData icon;
