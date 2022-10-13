@@ -25,16 +25,25 @@ class _Tab1State extends TabState<Tab1Page> {
                 case PhotosStatus.initial:
                   return const Center(child: CircularProgressIndicator());
                 case PhotosStatus.failure:
-                // TODO : 에러 화면
+                  // TODO : 에러 화면
                   return const Text('Error');
                 case PhotosStatus.success:
                   if (state.photos.isEmpty) {
                     return const Center(child: Text('No photos'));
                   }
-                  return ListView.builder(itemBuilder: (BuildContext context, int index) {
-                    return index >= state.photos.length ? const BottomLoader() : PhotoListItem(photo: state.photos[index]);
-                  },
-                    itemCount: state.photos.length,
+                  return RefreshIndicator(
+                    child: ListView.builder(itemBuilder: (BuildContext context, int index) {
+                      return index >= state.photos.length
+                          ? const BottomLoader()
+                          : PhotoListItem(photo: state.photos[index]);
+                      },
+                      itemCount: state.photos.length,
+                    ),
+                    onRefresh: () async {
+                      showSnackBar(context, "리프레시!!!");
+                      final photosBloc = BlocProvider.of<PhotosBloc>(context);
+                      photosBloc.add(PhotosFetched());
+                    }
                   );
               }
             }
