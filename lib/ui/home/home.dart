@@ -3,6 +3,7 @@ import 'package:flutter_template/ui/home/tab1/tab1.dart';
 import 'package:flutter_template/ui/home/tab2/tab2.dart';
 import 'package:flutter_template/ui/home/tab3/tab3.dart';
 import 'package:flutter_template/ui/home/tab4/tab4.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Tab {
   IconData icon;
@@ -34,9 +35,20 @@ class _MyHomePageState extends State<MyHomePage> {
     Tab(Icons.settings_outlined, Icons.settings, '탭4', Tab4Page())
   ];
 
+  DateTime? currentBackPressTime;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(onWillPop: () {
+      DateTime now = DateTime.now();
+      if (currentBackPressTime == null ||
+          now.difference(currentBackPressTime!) > Duration(seconds: 2)) {
+        currentBackPressTime = now;
+        Fluttertoast.showToast(msg: '\'뒤로\' 버튼 한번 더 누르시면 종료됩니다.');
+        return Future.value(false);
+      }
+      return Future.value(true);
+    }, child: Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -72,6 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
           );
         }); },
       )
+    )
     );
   }
 }

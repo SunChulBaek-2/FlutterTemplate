@@ -36,6 +36,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
+  fluttertoast: ^8.0.9
   http: ^0.13.5
   logger: ^1.1.0
   stream_transform: ^2.0.1

@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/counter_observer.dart';
 import 'package:flutter_template/ui/home/home.dart';
+import 'package:flutter_template/ui/splash/splash.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -24,11 +25,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Template',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const MyHomePage(title: 'Flutter Template'),
+      title: 'Flutter Template',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      initialRoute: '/splash',
+      routes: {
+        '/splash': (context) => const SplashScreen(),
+        '/home': (context) => const MyHomePage(title: 'Flutter Template')
+      }
     );
   }
 }
