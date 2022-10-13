@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/event/bottom_nav_item_reselect_event.dart';
+import 'package:flutter_template/main.dart';
 import 'package:flutter_template/ui/home/tab1/tab1.dart';
 import 'package:flutter_template/ui/home/tab2/tab2.dart';
 import 'package:flutter_template/ui/home/tab3/tab3.dart';
@@ -14,16 +16,16 @@ class Tab {
 }
 
 // 참고 : https://dopble2k.tistory.com/9
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomeScreen> createState() => _HomeState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomeState extends State<HomeScreen> {
   int _selectedIndex = 0;
   PageController pageController = PageController();
 
@@ -75,12 +77,16 @@ class _MyHomePageState extends State<MyHomePage> {
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
         onTap: (int index) { setState(() {
-          _selectedIndex = index;
-          pageController.animateToPage(
-              index,
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeOut
-          );
+          if (_selectedIndex == index) {
+            eventBus.fire(BottomNavItemReselectEvent(index + 1));
+          } else {
+            _selectedIndex = index;
+            pageController.animateToPage(
+                index,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeOut
+            );
+          }
         }); },
       )
     )

@@ -33,6 +33,7 @@ dependencies:
   bloc_concurrency: ^0.2.0
   cached_network_image: ^3.2.2
   equatable: ^2.0.3
+  event_bus: ^2.0.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1

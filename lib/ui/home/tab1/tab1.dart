@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_template/event/bottom_nav_item_reselect_event.dart';
+import 'package:flutter_template/main.dart';
 import 'package:flutter_template/ui/home/tab_page.dart';
 import 'package:flutter_template/bloc/photos_bloc.dart';
 import 'package:flutter_template/ui/home/tab1/bottom_loader.dart';
@@ -14,11 +16,25 @@ class Tab1Page extends StatefulWidget {
 }
 
 class _Tab1State extends TabState<Tab1Page> {
+  late PhotosBloc _photosBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _photosBloc = PhotosBloc(httpClient: http.Client());
+    _photosBloc.add(PhotosFetched());
+    eventBus.on<BottomNavItemReselectEvent>().listen((event) {
+      if (event.index == 1) {
+        showSnackBar(context, "Tab1 리셀렉~");
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return BlocProvider(
-        create: (_) => PhotosBloc(httpClient: http.Client())..add(PhotosFetched()),
+        create: (_) => _photosBloc,
         child: BlocBuilder<PhotosBloc, PhotosState>(
             builder: (context, state) {
               switch (state.status) {

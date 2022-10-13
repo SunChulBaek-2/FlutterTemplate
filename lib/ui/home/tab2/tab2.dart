@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_template/event/bottom_nav_item_reselect_event.dart';
+import 'package:flutter_template/main.dart';
 import 'package:flutter_template/ui/home/tab_page.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -17,6 +19,11 @@ class _Tab2State extends TabState<Tab2Page> {
   @override
   void initState() {
     super.initState();
+    eventBus.on<BottomNavItemReselectEvent>().listen((event) {
+      if (event.index == 2) {
+        showSnackBar(context, "Tab2 리셀렉~");
+      }
+    });
     if (Platform.isAndroid) {
       WebView.platform = AndroidWebView();
     }

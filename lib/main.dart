@@ -1,8 +1,11 @@
 import 'dart:io';
 
+import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/ui/home/home.dart';
 import 'package:flutter_template/ui/splash/splash.dart';
+
+EventBus eventBus = EventBus();
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -29,7 +32,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/splash',
       routes: {
         '/splash': (context) => const SplashScreen(),
-        '/home': (context) => const MyHomePage(title: 'Flutter Template')
+        '/home': (context) => const HomeScreen(title: 'Flutter Template')
       }
     );
   }
