@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
       if (currentBackPressTime == null ||
           now.difference(currentBackPressTime!) > Duration(seconds: 2)) {
         currentBackPressTime = now;
-        Fluttertoast.showToast(msg: '\'뒤로\' 버튼 한번 더 누르시면 종료됩니다.');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('\'뒤로\' 버튼 한번 더 누르시면 종료됩니다.')));
         return Future.value(false);
       }
       return Future.value(true);
