@@ -4,7 +4,6 @@ import 'package:flutter_template/ui/home/tab_page.dart';
 import 'package:flutter_template/bloc/photos_bloc.dart';
 import 'package:flutter_template/ui/home/tab1/bottom_loader.dart';
 import 'package:flutter_template/ui/home/tab1/photo_list_item.dart';
-import 'package:http/http.dart' as http;
 
 class Tab1Page extends TabPage {
   const Tab1Page({Key? key, required int index}) : super(key: key, index: index);
@@ -20,7 +19,7 @@ class _Tab1State extends TabState<Tab1Page> {
   @override
   void initState() {
     super.initState();
-    _photosBloc = PhotosBloc(httpClient: http.Client());
+    _photosBloc = PhotosBloc();
     _photosBloc.add(PhotosFetched());
   }
 

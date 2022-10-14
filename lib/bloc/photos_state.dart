@@ -5,31 +5,27 @@ enum PhotosStatus { initial, success, failure }
 class PhotosState extends Equatable {
   const PhotosState({
     this.status = PhotosStatus.initial,
-    this.photos = const <Photo>[],
-    this.hasReachedMax = false
+    this.photos = const <Photo>[]
   });
 
   final PhotosStatus status;
   final List<Photo> photos;
-  final bool hasReachedMax;
 
   PhotosState copyWith({
     PhotosStatus? status,
-    List<Photo>? photos,
-    bool? hasReachedMax
+    List<Photo>? photos
   }) {
     return PhotosState(
       status: status ?? this.status,
-      photos: photos ?? this.photos,
-      hasReachedMax: hasReachedMax ?? this.hasReachedMax
+      photos: photos ?? this.photos
     );
   }
 
   @override
   String toString() {
-    return '''PhotosState { status: $status, hasReachedMax: $hasReachedMax, photos: ${photos.length}}''';
+    return '''PhotosState { status: $status, photos: ${photos.length}}''';
   }
 
   @override
-  List<Object?> get props => [status, photos, hasReachedMax];
+  List<Object?> get props => [status, photos];
 }
