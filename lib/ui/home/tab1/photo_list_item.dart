@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/model/photo.dart';
+import 'package:flutter_template/data/model/photo.dart';
 import 'package:flutter_template/ui/detail/photo.dart';
 
 class PhotoListItem extends StatelessWidget {
