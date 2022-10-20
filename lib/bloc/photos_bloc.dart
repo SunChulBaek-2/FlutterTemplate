@@ -6,13 +6,11 @@ import 'package:flutter_template/main.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_template/data/model/photo.dart';
 import 'package:stream_transform/stream_transform.dart';
-import 'package:logger/logger.dart';
 
 part 'photos_event.dart';
 part 'photos_state.dart';
 
 const throttleDuration = Duration(microseconds: 100);
-var _logger = Logger();
 
 EventTransformer<E> throttleDroppable<E>(Duration duration) {
   return (events, mapper) {
