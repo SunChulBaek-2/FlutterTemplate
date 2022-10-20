@@ -1,30 +1,31 @@
 import 'dart:convert';
 
-import 'package:equatable/equatable.dart';
 import 'package:flutter_template/data/json_parser.dart';
 import 'package:flutter_template/util/timber.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-class Photo extends Equatable {
+part 'photo.g.dart';
+
+// flutter pub run build_runner build
+// flutter pub run build_runner watch
+@JsonSerializable()
+class Photo {
   const Photo({required this.albumId, required this.id, required this.title, required this.url, required this.thumbnailUrl});
 
+  @JsonKey(name: 'albumId')
   final int albumId;
+  @JsonKey(name: 'id')
   final int id;
+  @JsonKey(name: 'title')
   final String title;
+  @JsonKey(name: 'url')
   final String url;
+  @JsonKey(name: 'thumbnailUrl')
   final String thumbnailUrl;
 
-  @override
-  List<Object> get props => [albumId, id, title, url, thumbnailUrl];
-
-  factory Photo.fromJson(dynamic json) {
+  factory Photo.fromJson(Map<String, dynamic> json) {
     try {
-      return Photo(
-          albumId: json['albumId'] as int,
-          id: json['id'] as int,
-          title: json['title'] as String,
-          url: json['url'] as String,
-          thumbnailUrl: json['thumbnailUrl'] as String
-      );
+      return _$PhotoFromJson(json);
     } catch (e) {
       Timber.e(e);
     }
