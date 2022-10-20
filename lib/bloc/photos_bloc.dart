@@ -25,7 +25,7 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
 
   Future<void> _onPhotosFetched(PhotosFetched event, Emitter<PhotosState> emit) async {
     try {
-      final photos = await apiClient.getPhotos();
+      final photos = await apiClient.getPhotos(event.size);
       return emit(state.copyWith(
         status: PhotosStatus.success,
         photos: photos

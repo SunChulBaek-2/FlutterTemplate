@@ -20,7 +20,7 @@ class _Tab1State extends TabState<Tab1Page> {
   void initState() {
     super.initState();
     _photosBloc = PhotosBloc();
-    _photosBloc.add(PhotosFetched());
+    _photosBloc.add(PhotosFetched(20));
   }
 
   @override
@@ -53,7 +53,7 @@ class _Tab1State extends TabState<Tab1Page> {
                     onRefresh: () async {
                       showSnackBar("리프레시!!!");
                       final photosBloc = BlocProvider.of<PhotosBloc>(context);
-                      photosBloc.add(PhotosFetched());
+                      photosBloc.add(PhotosFetched(20));
                     }
                   );
               }

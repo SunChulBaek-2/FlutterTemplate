@@ -5,4 +5,8 @@ class PhotosEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class PhotosFetched extends PhotosEvent {}
+class PhotosFetched extends PhotosEvent {
+  PhotosFetched(this.size);
+
+  final int size;
+}
