@@ -32,17 +32,10 @@ class PhotoListItem extends StatelessWidget {
           ],
         ),
         onTap: () => {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => PhotoScreen(
-                param: PhotoParam(
-                  'https://picsum.photos/250?image=9',
-                  photo.title
-                )
-              )
-            )
-          )
+          Navigator.pushNamed(context, PhotoScreen.routeName, arguments: PhotoParam(
+              'https://picsum.photos/250?image=9',
+              photo.title
+          ))
         },
       )
     );

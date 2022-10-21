@@ -7,6 +7,8 @@ const int splashDelay = 2;
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
+  static const routeName = "/splash";
+
   @override
   State<StatefulWidget> createState() => _SplashState();
 }

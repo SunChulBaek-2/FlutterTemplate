@@ -19,6 +19,8 @@ class Tab {
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.title});
 
+  static const routeName = "/home";
+
   final String title;
 
   @override

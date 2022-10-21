@@ -9,9 +9,11 @@ class PhotoParam {
 }
 
 class PhotoScreen extends StatelessWidget {
-  final PhotoParam param;
-
   const PhotoScreen({Key? key, required this.param}) : super(key: key);
+
+  static const routeName = "/photo";
+
+  final PhotoParam param;
 
   @override
   Widget build(BuildContext context) {
