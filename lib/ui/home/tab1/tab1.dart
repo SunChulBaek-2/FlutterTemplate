@@ -27,42 +27,42 @@ class _Tab1State extends TabState<Tab1Page> {
   Widget build(BuildContext context) {
     super.build(context);
     return BlocProvider(
-        create: (_) => _photosBloc,
-        child: BlocBuilder<PhotosBloc, PhotosState>(
-            builder: (context, state) {
-              switch (state.status) {
-                case PhotosStatus.initial:
-                  return const Center(child: CircularProgressIndicator());
-                case PhotosStatus.failure:
-                  // TODO : 에러 화면
-                  return const Text('Error');
-                case PhotosStatus.success:
-                  if (state.photos.isEmpty) {
-                    return const Center(child: Text('No photos'));
-                  }
-                  return RefreshIndicator(
-                    child: Scrollbar(
-                      thumbVisibility: true,
-                      controller: _scrollController,
-                      child: ListView.builder(
-                        controller: _scrollController,
-                        itemBuilder: (BuildContext context, int index) {
-                          return index >= state.photos.length
-                            ? const BottomLoader()
-                            : PhotoListItem(photo: state.photos[index]);
-                        },
-                        itemCount: state.photos.length,
-                      )
-                    ),
-                    onRefresh: () async {
-                      showSnackBar("리프레시!!!");
-                      final photosBloc = BlocProvider.of<PhotosBloc>(context);
-                      photosBloc.add(PhotosFetched(20));
-                    }
-                  );
+      create: (_) => _photosBloc,
+      child: BlocBuilder<PhotosBloc, PhotosState>(
+        builder: (context, state) {
+          switch (state.status) {
+            case PhotosStatus.initial:
+              return const Center(child: CircularProgressIndicator());
+            case PhotosStatus.failure:
+              // TODO : 에러 화면
+              return const Text('Error');
+            case PhotosStatus.success:
+              if (state.photos.isEmpty) {
+                return const Center(child: Text('No photos'));
               }
-            }
-        )
+              return RefreshIndicator(
+                child: Scrollbar(
+                  thumbVisibility: true,
+                  controller: _scrollController,
+                  child: ListView.builder(
+                    controller: _scrollController,
+                    itemBuilder: (BuildContext context, int index) {
+                      return index >= state.photos.length
+                        ? const BottomLoader()
+                        : PhotoListItem(photo: state.photos[index]);
+                    },
+                    itemCount: state.photos.length,
+                  )
+                ),
+                onRefresh: () async {
+                  showSnackBar("리프레시!!!");
+                  final photosBloc = BlocProvider.of<PhotosBloc>(context);
+                  photosBloc.add(PhotosFetched(20));
+                }
+              );
+          }
+        }
+      )
     );
   }
 

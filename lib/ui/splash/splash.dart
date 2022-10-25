@@ -32,8 +32,8 @@ class _SplashState extends State<SplashScreen> {
         child: SafeArea(
           child: Center(
             child: Text(
-                'Splash',
-                style: TextStyle(fontSize: 32, color: Colors.white)
+              'Splash',
+              style: TextStyle(fontSize: 32, color: Colors.white)
             )
           )
         )

@@ -13,19 +13,19 @@ class _Tab4State extends TabState<Tab4Page> {
   Widget build(BuildContext context) {
     super.build(context);
     return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text("Tab4"),
-            ElevatedButton(
-                onPressed: () {
-                  // 스낵바 호출
-                  showSnackBar('탭4!!!');
-                },
-                child: const Text('Show SnackBar')
-            ),
-          ],
-        )
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const Text("Tab4"),
+          ElevatedButton(
+            onPressed: () {
+              // 스낵바 호출
+              showSnackBar('탭4!!!');
+            },
+            child: const Text('Show SnackBar')
+          ),
+        ],
+      )
     );
   }
 

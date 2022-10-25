@@ -16,8 +16,8 @@ class _Tab3State extends TabState<Tab3Page> {
   Widget build(BuildContext context) {
     super.build(context);
     return BlocProvider(
-        create: (_) => CounterCubit(),
-        child: const CounterView()
+      create: (_) => CounterCubit(),
+      child: const CounterView()
     );
   }
 
