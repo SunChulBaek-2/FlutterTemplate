@@ -4,6 +4,7 @@ import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/data/model/api_client.dart';
 import 'package:flutter_template/ui/detail/photo.dart';
+import 'package:flutter_template/ui/detail/webview.dart';
 import 'package:flutter_template/ui/home/home.dart';
 import 'package:flutter_template/ui/splash/splash.dart';
 
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Template',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.indigo,
       ),
       initialRoute: SplashScreen.routeName,
       routes: {
@@ -52,6 +53,9 @@ Route createRoute(String route, Object? arguments) => PageRouteBuilder(
   pageBuilder: (context, animation, secondaryAnimation) {
     if (route == PhotoScreen.routeName) {
       return PhotoScreen(param: arguments as PhotoParam);
+    } else if (route == WebViewScreen.routeName) {
+      final args = arguments as WebViewArguments;
+      return WebViewScreen(title: args.title, url: args.url);
     }
     throw Exception();
   },
