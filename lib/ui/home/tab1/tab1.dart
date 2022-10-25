@@ -41,14 +41,18 @@ class _Tab1State extends TabState<Tab1Page> {
                     return const Center(child: Text('No photos'));
                   }
                   return RefreshIndicator(
-                    child: ListView.builder(
+                    child: Scrollbar(
+                      thumbVisibility: true,
                       controller: _scrollController,
-                      itemBuilder: (BuildContext context, int index) {
-                        return index >= state.photos.length
-                          ? const BottomLoader()
-                          : PhotoListItem(photo: state.photos[index]);
-                      },
-                      itemCount: state.photos.length,
+                      child: ListView.builder(
+                        controller: _scrollController,
+                        itemBuilder: (BuildContext context, int index) {
+                          return index >= state.photos.length
+                            ? const BottomLoader()
+                            : PhotoListItem(photo: state.photos[index]);
+                        },
+                        itemCount: state.photos.length,
+                      )
                     ),
                     onRefresh: () async {
                       showSnackBar("리프레시!!!");
