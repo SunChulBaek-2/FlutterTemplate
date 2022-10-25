@@ -11,11 +11,9 @@ jobs:
           name: Build Binaries
           command: flutter pub get;flutter pub run build_runner build;flutter build apk --build-name="1.0.0" --build-number=${CIRCLE_BUILD_NUM} --release;mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/FlutterTemplate-release-${CIRCLE_BUILD_NUM}.apk
       - slack/notify:
-          channel: C0489S6TWQZ
           event: fail
           template: basic_fail_1
       - slack/notify:
-          channel: C0489S6TWQZ
           event: pass
           template: basic_success_1
       - store_artifacts:
