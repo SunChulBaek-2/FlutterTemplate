@@ -37,10 +37,14 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
+  flutter_localizations:
+    sdk: flutter
+  flutter_svg: ^1.1.5
   http: ^0.13.5
   intl: ^0.17.0
   json_annotation: ^4.7.0
   logger: ^1.1.0
+  lottie: ^1.4.3
   stream_transform: ^2.0.1
   webview_flutter: ^3.0.4
 
