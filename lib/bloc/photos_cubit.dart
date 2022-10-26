@@ -10,7 +10,7 @@ part 'photos_state.dart';
 class PhotosCubit extends Cubit<PhotosState> {
   PhotosCubit() : super(const PhotosState());
 
-  void init(int size) async {
+  Future<void> init(int size) async {
     try {
       final photos = await restClient.getPhotos(size);
       return emit(state.copyWith(
