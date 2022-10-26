@@ -28,7 +28,7 @@ class _SplashState extends State<SplashScreen> {
     return WillPopScope(
       onWillPop: () => Future.value(false),
       child: const Material(
-        color: Colors.blue,
+        color: Colors.indigo,
         child: SafeArea(
           child: Center(
             child: Text(

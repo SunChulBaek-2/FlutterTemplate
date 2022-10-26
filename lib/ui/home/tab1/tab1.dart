@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/ui/home/tab_page.dart';
-import 'package:flutter_template/bloc/photos_bloc.dart';
+import 'package:flutter_template/bloc/photos_cubit.dart';
 import 'package:flutter_template/ui/home/tab1/bottom_loader.dart';
 import 'package:flutter_template/ui/home/tab1/photo_list_item.dart';
 
@@ -13,22 +13,15 @@ class Tab1Page extends TabPage {
 }
 
 class _Tab1State extends TabState<Tab1Page> {
-  late PhotosBloc _photosBloc;
+  final PhotosCubit _photosCubit = PhotosCubit()..init(20);
   final ScrollController _scrollController = ScrollController();
-
-  @override
-  void initState() {
-    super.initState();
-    _photosBloc = PhotosBloc();
-    _photosBloc.add(PhotosFetched(20));
-  }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return BlocProvider(
-      create: (_) => _photosBloc,
-      child: BlocBuilder<PhotosBloc, PhotosState>(
+      create: (_) => _photosCubit,
+      child: BlocBuilder<PhotosCubit, PhotosState>(
         builder: (context, state) {
           switch (state.status) {
             case PhotosStatus.initial:
@@ -56,8 +49,8 @@ class _Tab1State extends TabState<Tab1Page> {
                 ),
                 onRefresh: () async {
                   showSnackBar("리프레시!!!");
-                  final photosBloc = BlocProvider.of<PhotosBloc>(context);
-                  photosBloc.add(PhotosFetched(20));
+                  final photosCubit = BlocProvider.of<PhotosCubit>(context);
+                  photosCubit.init(20);
                 }
               );
           }

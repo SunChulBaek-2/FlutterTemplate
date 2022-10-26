@@ -78,7 +78,7 @@ class _HomeState extends State<HomeScreen> {
           label: tab.label
         )).toList(),
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Colors.indigo,
         showSelectedLabels: true,
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
