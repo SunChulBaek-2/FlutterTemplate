@@ -1,15 +1,16 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/data/model/api_client.dart';
+import 'package:flutter_template/data/rest_client.dart';
 import 'package:flutter_template/ui/detail/photo.dart';
 import 'package:flutter_template/ui/detail/webview.dart';
 import 'package:flutter_template/ui/home/home.dart';
 import 'package:flutter_template/ui/splash/splash.dart';
 
 EventBus eventBus = EventBus();
-ApiClient apiClient = ApiClient();
+RestClient restClient = RestClient(Dio(BaseOptions(headers: headers)));
 
 class MyHttpOverrides extends HttpOverrides {
   @override
