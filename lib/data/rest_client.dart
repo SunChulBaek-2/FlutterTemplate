@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_template/data/model/photo.dart';
+import 'package:intl/intl.dart';
 import 'package:retrofit/http.dart';
 
 part 'rest_client.g.dart';
@@ -12,4 +13,12 @@ abstract class RestClient {
 
   @GET('photos')
   Future<List<Photo>> getPhotos(@Query('_limit') int limit);
+}
+
+DateTime? dateTimeFromString(String? text) {
+  if (text != null) {
+    return DateFormat('yyyy-MM-dd HH:mm:ss').parse(text);
+  } else {
+    return null;
+  }
 }

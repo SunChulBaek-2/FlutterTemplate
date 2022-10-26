@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:flutter_template/data/json_parser.dart';
 import 'package:flutter_template/util/timber.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -30,23 +27,5 @@ class Photo {
       Timber.e(e);
     }
     throw Exception('Photo.fromJson()');
-  }
-}
-
-class PhotoParser extends JsonParser<List<Photo>> {
-  PhotoParser(String encodedJson) : super(encodedJson);
-
-  @override
-  List<Photo> parse(String encodedJson) {
-    try {
-      final body = jsonDecode(encodedJson) as List;
-      return body.map((dynamic json) {
-        final map = json as Map<String, dynamic>;
-        return Photo.fromJson(map);
-      }).toList();
-    } catch (e) {
-      Timber.e(e);
-    }
-    throw Exception('PhotoParser.parse()');
   }
 }
