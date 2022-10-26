@@ -8,9 +8,19 @@ import 'package:flutter_template/ui/detail/photo.dart';
 import 'package:flutter_template/ui/detail/webview.dart';
 import 'package:flutter_template/ui/home/home.dart';
 import 'package:flutter_template/ui/splash/splash.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 EventBus eventBus = EventBus();
-RestClient restClient = RestClient(Dio(BaseOptions(headers: headers)));
+RestClient restClient = RestClient(Dio(BaseOptions(headers: headers))
+  ..interceptors.add(PrettyDioLogger(
+      requestHeader: false,
+      requestBody: true,
+      responseHeader: false,
+      responseBody: true,
+      error: true,
+      compact: true,
+      maxWidth: 90
+  )));
 
 class MyHttpOverrides extends HttpOverrides {
   @override
