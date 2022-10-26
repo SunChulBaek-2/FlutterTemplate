@@ -1,24 +1,21 @@
 import 'package:flutter_template/util/timber.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'photo.freezed.dart';
 part 'photo.g.dart';
 
 // flutter pub run build_runner build
 // flutter pub run build_runner watch
+@freezed
 @JsonSerializable()
-class Photo {
-  const Photo({required this.albumId, required this.id, required this.title, required this.url, required this.thumbnailUrl});
-
-  @JsonKey(name: 'albumId')
-  final int albumId;
-  @JsonKey(name: 'id')
-  final int id;
-  @JsonKey(name: 'title')
-  final String title;
-  @JsonKey(name: 'url')
-  final String url;
-  @JsonKey(name: 'thumbnailUrl')
-  final String thumbnailUrl;
+class Photo with _$Photo {
+  factory Photo({
+    @JsonKey(name: 'albumId') required int albumId,
+    @JsonKey(name: 'id') required int id,
+    @JsonKey(name: 'title') required String title,
+    @JsonKey(name: 'url') required String url,
+    @JsonKey(name: 'thumbnailUrl') required String thumbnailUrl
+  }) = _Photo;
 
   factory Photo.fromJson(Map<String, dynamic> json) {
     try {
