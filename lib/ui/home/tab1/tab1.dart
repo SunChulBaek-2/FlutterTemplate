@@ -49,8 +49,7 @@ class _Tab1State extends TabState<Tab1Page> {
                 ),
                 onRefresh: () async {
                   showSnackBar("리프레시!!!");
-                  final photosCubit = BlocProvider.of<PhotosCubit>(context);
-                  photosCubit.init(20);
+                  _photosCubit.init(20);
                 }
               );
           }
