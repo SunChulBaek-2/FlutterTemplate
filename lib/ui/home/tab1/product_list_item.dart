@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/data/model/photo.dart';
-import 'package:flutter_template/ui/detail/photo.dart';
+import 'package:flutter_template/data/model/product.dart';
+import 'package:flutter_template/ui/detail/product.dart';
 
-class PhotoListItem extends StatelessWidget {
-  const PhotoListItem({super.key, required this.photo});
+class ProductListItem extends StatelessWidget {
+  const ProductListItem({super.key, required this.product});
 
-  final Photo photo;
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -19,22 +19,21 @@ class PhotoListItem extends StatelessWidget {
             CachedNetworkImage(
               width: 100,
               height: 100,
-              // TODO : jsonplaceholder의 이미지 로딩 안됨.
-              //imageUrl: photo.thumbnailUrl,
-              imageUrl: 'https://picsum.photos/250?image=9',
-              placeholder: (context, url) => const CircularProgressIndicator(),
+              imageUrl: product.thumbnail,
+              fit: BoxFit.fitHeight,
+              placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
               errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
             const SizedBox(width: 10),
             Expanded(
-              child: Text(photo.title)
+              child: Text(product.title)
             )
           ],
         ),
         onTap: () => {
-          Navigator.pushNamed(context, PhotoScreen.routeName, arguments: PhotoParam(
+          Navigator.pushNamed(context, ProductScreen.routeName, arguments: ProductParam(
             'https://picsum.photos/250?image=9',
-            photo.title
+            product.title
           ))
         },
       )

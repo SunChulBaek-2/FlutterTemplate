@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/ui/home/tab_page.dart';
-import 'package:flutter_template/bloc/photos_cubit.dart';
+import 'package:flutter_template/bloc/products_cubit.dart';
 import 'package:flutter_template/ui/home/tab1/bottom_loader.dart';
-import 'package:flutter_template/ui/home/tab1/photo_list_item.dart';
+import 'package:flutter_template/ui/home/tab1/product_list_item.dart';
 
 class Tab1Page extends TabPage {
   const Tab1Page({Key? key, required int index}) : super(key: key, index: index);
@@ -13,24 +13,24 @@ class Tab1Page extends TabPage {
 }
 
 class _Tab1State extends TabState<Tab1Page> {
-  final PhotosCubit _photosCubit = PhotosCubit()..init(20);
+  final ProductsCubit _productsCubit = ProductsCubit()..init();
   final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return BlocProvider(
-      create: (_) => _photosCubit,
-      child: BlocBuilder<PhotosCubit, PhotosState>(
+      create: (_) => _productsCubit,
+      child: BlocBuilder<ProductsCubit, ProductsState>(
         builder: (context, state) {
           switch (state.status) {
-            case PhotosStatus.initial:
+            case ProductsStatus.initial:
               return const Center(child: CircularProgressIndicator());
-            case PhotosStatus.failure:
+            case ProductsStatus.failure:
               // TODO : 에러 화면
               return const Text('Error');
-            case PhotosStatus.success:
-              if (state.photos.isEmpty) {
+            case ProductsStatus.success:
+              if (state.products.isEmpty) {
                 return const Center(child: Text('No photos'));
               }
               return RefreshIndicator(
@@ -40,16 +40,16 @@ class _Tab1State extends TabState<Tab1Page> {
                   child: ListView.builder(
                     controller: _scrollController,
                     itemBuilder: (BuildContext context, int index) {
-                      return index >= state.photos.length
+                      return index >= state.products.length
                         ? const BottomLoader()
-                        : PhotoListItem(photo: state.photos[index]);
+                        : ProductListItem(product: state.products[index]);
                     },
-                    itemCount: state.photos.length,
+                    itemCount: state.products.length,
                   )
                 ),
                 onRefresh: () async {
                   showSnackBar("리프레시!!!");
-                  _photosCubit.init(20);
+                  _productsCubit.init();
                 }
               );
           }

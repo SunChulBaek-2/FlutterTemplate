@@ -1,25 +1,25 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class PhotoParam {
+class ProductParam {
   final String url;
   final String title;
 
-  PhotoParam(this.url, this.title);
+  ProductParam(this.url, this.title);
 }
 
-class PhotoScreen extends StatelessWidget {
-  const PhotoScreen({Key? key, required this.param}) : super(key: key);
+class ProductScreen extends StatelessWidget {
+  const ProductScreen({Key? key, required this.param}) : super(key: key);
 
-  static const routeName = "/photo";
+  static const routeName = "/product";
 
-  final PhotoParam param;
+  final ProductParam param;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Photo'),
+        title: const Text('Product'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {

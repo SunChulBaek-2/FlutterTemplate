@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_template/data/model/photo.dart';
+import 'package:flutter_template/data/model/product.dart';
 import 'package:intl/intl.dart';
 import 'package:retrofit/http.dart';
 
@@ -7,12 +7,12 @@ part 'rest_client.g.dart';
 
 Map<String, String> headers = { };
 
-@RestApi(baseUrl: 'https://jsonplaceholder.typicode.com/')
+@RestApi(baseUrl: 'https://dummyjson.com/')
 abstract class RestClient {
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 
-  @GET('photos')
-  Future<List<Photo>> getPhotos(@Query('_limit') int limit);
+  @GET('products')
+  Future<Products> getProducts();
 }
 
 DateTime? dateTimeFromString(String? text) {
