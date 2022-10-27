@@ -9,9 +9,9 @@ part 'products_state.dart';
 class ProductsCubit extends Cubit<ProductsState> {
   ProductsCubit() : super(const ProductsState());
 
-  void init() async {
+  void init([int skip = 0, int limit = 30]) async {
     try {
-      final products = await restClient.getProducts();
+      final products = await restClient.getProducts(skip, limit);
       return emit(state.copyWith(
           status: ProductsStatus.success,
           products: products.products

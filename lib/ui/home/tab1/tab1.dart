@@ -31,7 +31,7 @@ class _Tab1State extends TabState<Tab1Page> {
               return const Text('Error');
             case ProductsStatus.success:
               if (state.products.isEmpty) {
-                return const Center(child: Text('No photos'));
+                return const Center(child: Text('No products'));
               }
               return RefreshIndicator(
                 child: Scrollbar(

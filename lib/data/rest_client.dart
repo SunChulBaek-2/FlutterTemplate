@@ -12,7 +12,10 @@ abstract class RestClient {
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 
   @GET('products')
-  Future<Products> getProducts();
+  Future<Products> getProducts(
+    @Query('skip') int skip,
+    @Query('limit') int limit
+  );
 }
 
 DateTime? dateTimeFromString(String? text) {

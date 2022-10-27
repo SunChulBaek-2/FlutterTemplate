@@ -26,7 +26,20 @@ class ProductListItem extends StatelessWidget {
             ),
             const SizedBox(width: 10),
             Expanded(
-              child: Text(product.title)
+              child: SizedBox(
+                height: 100,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 8),
+                    Text(product.title, style: const TextStyle(fontWeight: FontWeight.w700)),
+                    const SizedBox(height: 4),
+                    Text(product.desc),
+                    const SizedBox(height: 8),
+                  ]
+                )
+              )
             )
           ],
         ),
