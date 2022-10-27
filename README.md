@@ -24,4 +24,3 @@
   * [freezed_annotation](https://pub.dev/packages/freezed_annotation)
   * [intl](https://pub.dev/packages/intl)
   * [logger](https://pub.dev/packages/logger)
-  * [stream_transform](https://pub.dev/packages/stream_transform)
