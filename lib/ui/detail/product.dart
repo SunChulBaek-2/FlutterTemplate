@@ -2,10 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ProductParam {
-  final String url;
+  final List<String> images;
   final String title;
 
-  ProductParam(this.url, this.title);
+  ProductParam(this.images, this.title);
 }
 
 class ProductScreen extends StatelessWidget {
@@ -19,7 +19,7 @@ class ProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Product'),
+        title: Text(param.title),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -27,17 +27,22 @@ class ProductScreen extends StatelessWidget {
           },
         ),
       ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            CachedNetworkImage(
-              imageUrl: param.url,
-              width: double.infinity,
-              fit: BoxFit.cover
-            ),
-            Text(param.title)
-          ],
-        )
+      body: ListView.builder(
+        itemBuilder: (BuildContext context, int index) {
+          return Stack(
+            children: [
+              CachedNetworkImage(imageUrl: param.images[index]),
+              Container(
+                color: Colors.yellow,
+                child: Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(param.images[index].substring(param.images[index].lastIndexOf("/") + 1))
+                )
+              )
+            ]
+          );
+        },
+        itemCount: param.images.length,
       )
     );
   }

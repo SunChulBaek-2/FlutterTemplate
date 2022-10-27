@@ -45,7 +45,7 @@ class ProductListItem extends StatelessWidget {
         ),
         onTap: () => {
           Navigator.pushNamed(context, ProductScreen.routeName, arguments: ProductParam(
-            'https://picsum.photos/250?image=9',
+            product.images.where((image) => !image.contains("thumbnail")).toList(),
             product.title
           ))
         },

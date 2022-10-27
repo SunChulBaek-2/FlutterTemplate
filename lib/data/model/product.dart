@@ -34,6 +34,7 @@ class Product with _$Product {
     @JsonKey(name: 'title') required String title,
     @JsonKey(name: 'description') required String desc,
     @JsonKey(name: 'thumbnail') required String thumbnail,
+    @JsonKey(name: 'images') required List<String> images,
   }) = _Product;
 
   factory Product.fromJson(Map<String, dynamic> json) {
