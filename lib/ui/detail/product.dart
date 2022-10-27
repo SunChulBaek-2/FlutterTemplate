@@ -31,7 +31,11 @@ class ProductScreen extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return Stack(
             children: [
-              CachedNetworkImage(imageUrl: param.images[index]),
+              CachedNetworkImage(
+                imageUrl: param.images[index],
+                placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
               Container(
                 color: Colors.yellow,
                 child: Padding(
