@@ -1,3 +1,4 @@
+import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/event/bottom_nav_item_reselect_event.dart';
 import 'package:flutter_template/main.dart';
@@ -11,10 +12,12 @@ abstract class TabPage extends StatefulWidget {
 abstract class TabState<T extends TabPage> extends State<T>
     with AutomaticKeepAliveClientMixin {
 
+  final EventBus _eventBus = getIt<EventBus>();
+
   @override
   void initState() {
     super.initState();
-    eventBus.on<BottomNavItemReselectEvent>().listen((event) {
+    _eventBus.on<BottomNavItemReselectEvent>().listen((event) {
       if (event.index == widget.index) {
         onDoubleTap();
       }

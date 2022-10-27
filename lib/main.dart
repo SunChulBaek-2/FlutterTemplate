@@ -1,37 +1,35 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_template/data/repository.dart';
 import 'package:flutter_template/data/rest_client.dart';
 import 'package:flutter_template/ui/detail/product.dart';
 import 'package:flutter_template/ui/detail/webview.dart';
 import 'package:flutter_template/ui/home/home.dart';
 import 'package:flutter_template/ui/splash/splash.dart';
+import 'package:get_it/get_it.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-EventBus eventBus = EventBus();
-RestClient restClient = RestClient(Dio(BaseOptions(headers: headers))
-  ..interceptors.add(PrettyDioLogger(
-      requestHeader: false,
-      requestBody: true,
-      responseHeader: false,
-      responseBody: true,
-      error: true,
-      compact: true,
-      maxWidth: 90
-  )));
-
-class MyHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
-  }
-}
+final getIt = GetIt.instance;
 
 void main() {
-  HttpOverrides.global = MyHttpOverrides();
+  setUp();
   runApp(const MyApp());
+}
+
+void setUp() {
+  getIt.registerSingleton<EventBus>(EventBus());
+  getIt.registerSingleton<RestClient>(RestClient(Dio(BaseOptions(headers: { }))
+    ..interceptors.add(PrettyDioLogger(
+        requestHeader: false,
+        requestBody: true,
+        responseHeader: false,
+        responseBody: true,
+        error: true,
+        compact: true,
+        maxWidth: 90
+    ))));
+  getIt.registerSingleton<Repository>(instanceName: 'repository', Repository());
 }
 
 class MyApp extends StatelessWidget {

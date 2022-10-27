@@ -41,6 +41,7 @@ dependencies:
     sdk: flutter
   flutter_svg: ^1.1.5
   freezed_annotation: ^2.2.0
+  get_it: ^7.2.0
   intl: ^0.17.0
   json_annotation: ^4.7.0
   logger: ^1.1.0

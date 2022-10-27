@@ -22,5 +22,6 @@
   * [event_bus](https://pub.dev/packages/event_bus)
   * [freezed](https://pub.dev/packages/freezed)
   * [freezed_annotation](https://pub.dev/packages/freezed_annotation)
+  * [get_it](https://pub.dev/packages/get_it)
   * [intl](https://pub.dev/packages/intl)
   * [logger](https://pub.dev/packages/logger)

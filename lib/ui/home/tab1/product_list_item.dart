@@ -35,7 +35,7 @@ class ProductListItem extends StatelessWidget {
                     const SizedBox(height: 8),
                     Text(product.title, style: const TextStyle(fontWeight: FontWeight.w700)),
                     const SizedBox(height: 4),
-                    Text(product.desc),
+                    Text(product.desc, maxLines: 3, overflow: TextOverflow.ellipsis),
                     const SizedBox(height: 8),
                   ]
                 )

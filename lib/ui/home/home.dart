@@ -1,3 +1,4 @@
+import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/event/bottom_nav_item_reselect_event.dart';
 import 'package:flutter_template/main.dart';
@@ -28,8 +29,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeState extends State<HomeScreen> {
+  final EventBus _eventBus = getIt<EventBus>();
   int _selectedIndex = 0;
-  PageController pageController = PageController();
+  final PageController _pageController = PageController();
 
   // index에 해당하는 더블탭 이벤트를 받음
   final List<Tab> _tabs = <Tab>[
@@ -59,7 +61,7 @@ class _HomeState extends State<HomeScreen> {
       ),
       body: SafeArea(
         child: PageView(
-          controller: pageController,
+          controller: _pageController,
           onPageChanged: (index) {
             setState(() {
               _selectedIndex = index;
@@ -84,10 +86,10 @@ class _HomeState extends State<HomeScreen> {
         showUnselectedLabels: true,
         onTap: (int index) { setState(() {
           if (_selectedIndex == index) {
-            eventBus.fire(BottomNavItemReselectEvent(index));
+            _eventBus.fire(BottomNavItemReselectEvent(index));
           } else {
             _selectedIndex = index;
-            pageController.animateToPage(
+            _pageController.animateToPage(
                 index,
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeOut

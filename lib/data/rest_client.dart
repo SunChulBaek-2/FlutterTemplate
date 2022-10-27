@@ -5,8 +5,6 @@ import 'package:retrofit/http.dart';
 
 part 'rest_client.g.dart';
 
-Map<String, String> headers = { };
-
 @RestApi(baseUrl: 'https://dummyjson.com/')
 abstract class RestClient {
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
