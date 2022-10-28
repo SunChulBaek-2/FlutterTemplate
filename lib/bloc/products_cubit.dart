@@ -7,7 +7,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 part 'products_cubit.freezed.dart';
-part 'products_state.dart';
+
+@freezed
+class ProductsState with _$ProductsState {
+  factory ProductsState({
+    required ResultStatus status,
+    required List<Product> products
+  }) = _ProductsState;
+}
 
 @injectable
 class ProductsCubit extends Cubit<ProductsState> {
