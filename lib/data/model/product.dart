@@ -33,6 +33,12 @@ class Product with _$Product {
     @JsonKey(name: 'id') required int id,
     @JsonKey(name: 'title') required String title,
     @JsonKey(name: 'description') required String desc,
+    @JsonKey(name: 'price') required int price,
+    @JsonKey(name: 'discountPercentage') required double discount,
+    @JsonKey(name: 'rating') required double rating,
+    @JsonKey(name: 'stock') required int stock,
+    @JsonKey(name: 'brand') required String brand,
+    @JsonKey(name: 'category') required String category,
     @JsonKey(name: 'thumbnail') required String thumbnail,
     @JsonKey(name: 'images') required List<String> images,
   }) = _Product;

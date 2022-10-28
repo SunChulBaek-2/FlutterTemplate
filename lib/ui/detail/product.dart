@@ -2,18 +2,36 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ProductParam {
-  final List<String> images;
-  final String title;
+  ProductParam({
+    required this.images,
+    required this.brand,
+    required this.category,
+    required this.title,
+    required this.desc,
+    required this.price,
+    required this.discount,
+    required this.stock,
+    required this.rating
+  });
 
-  ProductParam(this.images, this.title);
+  final List<String> images;
+  final String brand;
+  final String category;
+  final String title;
+  final String desc;
+  final int price;
+  final double discount;
+  final int stock;
+  final double rating;
 }
 
 class ProductScreen extends StatelessWidget {
-  const ProductScreen({Key? key, required this.param}) : super(key: key);
+  ProductScreen({Key? key, required this.param}) : super(key: key);
 
   static const routeName = "/product";
 
   final ProductParam param;
+  final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,26 +45,37 @@ class ProductScreen extends StatelessWidget {
           },
         ),
       ),
-      body: ListView.builder(
-        itemBuilder: (BuildContext context, int index) {
-          return Stack(
-            children: [
-              CachedNetworkImage(
-                imageUrl: param.images[index],
-                placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-              ),
-              Container(
-                color: Colors.yellow,
-                child: Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: Text(param.images[index].substring(param.images[index].lastIndexOf("/") + 1))
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: 200,
+            child: PageView(
+              controller: _pageController,
+              children: param.images.map((image) =>
+                CachedNetworkImage(
+                  imageUrl: image
                 )
-              )
-            ]
-          );
-        },
-        itemCount: param.images.length,
+              ).toList(),
+            )
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 4, left: 8, right: 8, bottom: 4),
+            child: Text('${param.category} > ${param.brand}', style: const TextStyle(color: Colors.blue))
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 4, left: 8, right: 8, bottom: 4),
+            child: Text(param.title, style: const TextStyle(fontSize: 16)),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 4, left: 8, right: 8, bottom: 4),
+            child: Text('\$${param.price} (${param.discount}% off) 재고: ${param.stock} 평점: ${param.rating}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700))
+          ),
+          Padding(
+              padding: const EdgeInsets.only(top: 4, left: 8, right: 8, bottom: 4),
+              child: Text(param.desc, style: const TextStyle(fontSize: 16))
+          ),
+        ]
       )
     );
   }
