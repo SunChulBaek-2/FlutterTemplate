@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_template/injectable.dart';
 import 'package:flutter_template/ui/detail/product.dart';
@@ -5,7 +7,15 @@ import 'package:flutter_template/ui/detail/webview.dart';
 import 'package:flutter_template/ui/home/home.dart';
 import 'package:flutter_template/ui/splash/splash.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 void main() {
+  HttpOverrides.global = MyHttpOverrides();
   configureDependencies();
   runApp(const MyApp());
 }
