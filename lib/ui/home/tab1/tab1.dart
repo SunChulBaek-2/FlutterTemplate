@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_template/ui/common/error.dart';
+import 'package:flutter_template/ui/common/loading.dart';
 import 'package:flutter_template/ui/home/tab_page.dart';
 import 'package:flutter_template/bloc/products_cubit.dart';
 import 'package:flutter_template/ui/home/tab1/bottom_loader.dart';
@@ -25,10 +27,9 @@ class _Tab1State extends TabState<Tab1Page> {
         builder: (context, state) {
           switch (state.status) {
             case ProductsStatus.initial:
-              return const Center(child: CircularProgressIndicator());
+              return const LoadingScreen();
             case ProductsStatus.failure:
-              // TODO : 에러 화면
-              return const Text('Error');
+              return const ErrorScreen();
             case ProductsStatus.success:
               if (state.products.isEmpty) {
                 return const Center(child: Text('No products'));
