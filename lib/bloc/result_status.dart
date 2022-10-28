@@ -1,0 +1,1 @@
+enum ResultStatus { initial, success, failure }

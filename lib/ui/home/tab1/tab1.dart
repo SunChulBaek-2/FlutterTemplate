@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_template/bloc/result_status.dart';
 import 'package:flutter_template/injectable.dart';
 import 'package:flutter_template/ui/common/error.dart';
 import 'package:flutter_template/ui/common/loading.dart';
@@ -27,11 +28,11 @@ class _Tab1State extends TabState<Tab1Page> {
       child: BlocBuilder<ProductsCubit, ProductsState>(
         builder: (context, state) {
           switch (state.status) {
-            case ProductsStatus.initial:
+            case ResultStatus.initial:
               return const LoadingScreen();
-            case ProductsStatus.failure:
+            case ResultStatus.failure:
               return const ErrorScreen();
-            case ProductsStatus.success:
+            case ResultStatus.success:
               if (state.products.isEmpty) {
                 return const Center(child: Text('No products'));
               }
