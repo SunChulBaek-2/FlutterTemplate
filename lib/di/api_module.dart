@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_template/data/rest_client.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -20,6 +19,4 @@ abstract class ApiModule {
   );
 
   Dio get dio => Dio(options)..interceptors.add(logger);
-
-  RestClient get restClient => RestClient(dio);
 }

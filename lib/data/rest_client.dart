@@ -11,6 +11,9 @@ part 'rest_client.g.dart';
 abstract class RestClient {
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 
+  @factoryMethod
+  factory RestClient.from(Dio dio) => RestClient(dio);
+
   @GET('products')
   Future<Products> getProducts(
     @Query('skip') int skip,

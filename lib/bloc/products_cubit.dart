@@ -1,15 +1,16 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter_template/data/model/product.dart';
 import 'package:flutter_template/data/repository.dart';
 import 'package:flutter_template/util/timber.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+part 'products_cubit.freezed.dart';
 part 'products_state.dart';
 
 @injectable
 class ProductsCubit extends Cubit<ProductsState> {
-  ProductsCubit(this._repository) : super(const ProductsState());
+  ProductsCubit(this._repository) : super(ProductsState(status: ProductsStatus.initial, products: List.of([])));
 
   final Repository _repository;
 
