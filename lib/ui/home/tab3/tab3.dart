@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/cubit/counter_cubit.dart';
+import 'package:flutter_template/bloc/counter_cubit.dart';
 import 'package:flutter_template/ui/home/tab3/counter_view.dart';
 import 'package:flutter_template/ui/home/tab_page.dart';
 
