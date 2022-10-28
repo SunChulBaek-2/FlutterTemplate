@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_template/injectable.dart';
 import 'package:flutter_template/ui/common/error.dart';
 import 'package:flutter_template/ui/common/loading.dart';
 import 'package:flutter_template/ui/home/tab_page.dart';
@@ -15,7 +16,7 @@ class Tab1Page extends TabPage {
 }
 
 class _Tab1State extends TabState<Tab1Page> {
-  final ProductsCubit _productsCubit = ProductsCubit()..init();
+  final ProductsCubit _productsCubit = getIt<ProductsCubit>()..init();
   final ScrollController _scrollController = ScrollController();
 
   @override

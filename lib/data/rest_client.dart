@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_template/data/model/product.dart';
+import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 import 'package:retrofit/http.dart';
 
 part 'rest_client.g.dart';
 
+@singleton
 @RestApi(baseUrl: 'https://dummyjson.com/')
 abstract class RestClient {
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;

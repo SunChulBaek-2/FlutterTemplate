@@ -1,35 +1,13 @@
-import 'package:dio/dio.dart';
-import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/data/repository.dart';
-import 'package:flutter_template/data/rest_client.dart';
+import 'package:flutter_template/injectable.dart';
 import 'package:flutter_template/ui/detail/product.dart';
 import 'package:flutter_template/ui/detail/webview.dart';
 import 'package:flutter_template/ui/home/home.dart';
 import 'package:flutter_template/ui/splash/splash.dart';
-import 'package:get_it/get_it.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-
-final getIt = GetIt.instance;
 
 void main() {
-  setUp();
+  configureDependencies();
   runApp(const MyApp());
-}
-
-void setUp() {
-  getIt.registerSingleton<EventBus>(EventBus());
-  getIt.registerSingleton<RestClient>(RestClient(Dio(BaseOptions(headers: { }))
-    ..interceptors.add(PrettyDioLogger(
-        requestHeader: false,
-        requestBody: true,
-        responseHeader: false,
-        responseBody: true,
-        error: true,
-        compact: true,
-        maxWidth: 90
-    ))));
-  getIt.registerSingleton<Repository>(instanceName: 'repository', Repository());
 }
 
 class MyApp extends StatelessWidget {
