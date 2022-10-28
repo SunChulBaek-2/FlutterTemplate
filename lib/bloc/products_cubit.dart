@@ -9,16 +9,20 @@ import 'package:injectable/injectable.dart';
 part 'products_cubit.freezed.dart';
 
 @freezed
+@injectable
 class ProductsState with _$ProductsState {
   factory ProductsState({
     required ResultStatus status,
     required List<Product> products
   }) = _ProductsState;
+
+  @factoryMethod
+  factory ProductsState.from() => ProductsState(status: ResultStatus.initial, products: List.of([]));
 }
 
 @injectable
 class ProductsCubit extends Cubit<ProductsState> {
-  ProductsCubit(this._repository) : super(ProductsState(status: ResultStatus.initial, products: List.of([])));
+  ProductsCubit(this._repository, ProductsState state) : super(state);
 
   final Repository _repository;
 
