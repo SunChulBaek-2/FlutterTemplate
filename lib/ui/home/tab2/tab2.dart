@@ -19,7 +19,7 @@ class _Tab2State extends TabState<Tab2Page> {
       children: [
         SizedBox(
           height: double.infinity,
-          child: Lottie.asset(Lotties.snakeMovingConfetti, fit: BoxFit.fill)
+          child: Lottie.asset(Lotties.snake_moving_confetti, fit: BoxFit.fill)
         ),
         Center(
           child: Column(

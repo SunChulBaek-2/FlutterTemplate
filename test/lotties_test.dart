@@ -5,6 +5,6 @@ import 'package:flutter_template/resources/resources.dart';
 
 void main() {
   test('lotties assets test', () {
-    expect(File(Lotties.snakeMovingConfetti).existsSync(), true);
+    expect(File(Lotties.snake_moving_confetti).existsSync(), true);
   });
 }

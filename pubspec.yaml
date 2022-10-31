@@ -132,7 +132,9 @@ spider:
   groups:
     - path: assets/images
       class_name: Images
+      use_underscores: true
       types: [ .png, .jpg, .jpeg, .webp, .webm, .bmp, .svg ]
     - path: assets/lottie
       class_name: Lotties
+      use_underscores: true
       types: [ .json ]

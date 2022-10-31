@@ -28,7 +28,7 @@ class _Tab4State extends TabState<Tab4Page> {
           ),
           const Text('이것은 svg 이미지'),
           SvgPicture.asset(
-            Images.kubaInformationIconsSet1,
+            Images.kuba_information_icons_set_1,
             width: 100,
             height: 100
           )
