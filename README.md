@@ -19,6 +19,7 @@
     * [cached_network_image](https://pub.dev/packages/cached_network_image)
     * [flutter_svg](https://pub.dev/packages/flutter_svg)
     * [lottie](https://pub.dev/packages/lottie)
+    * [smooth_page_indicator](https://pub.dev/packages/smooth_page_indicator)
     * [webview_flutter](https://pub.dev/packages/webview_flutter)
   * [build_runner](https://pub.dev/packages/build_runner)
   * [equatable](https://pub.dev/packages/equatable)

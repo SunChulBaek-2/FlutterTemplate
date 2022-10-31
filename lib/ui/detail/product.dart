@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ProductParam {
   ProductParam({
@@ -54,9 +55,22 @@ class ProductScreen extends StatelessWidget {
               controller: _pageController,
               children: param.images.map((image) =>
                 CachedNetworkImage(
-                  imageUrl: image
+                  imageUrl: image,
+                  placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 )
               ).toList(),
+            )
+          ),
+          Center(
+            child: SmoothPageIndicator(
+              controller: _pageController,
+              count: param.images.length,
+              effect: const JumpingDotEffect(
+                dotWidth: 10,
+                dotHeight: 10,
+                spacing: 6
+              )
             )
           ),
           Padding(

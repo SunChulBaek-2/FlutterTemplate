@@ -29,6 +29,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Template',
       theme: ThemeData(
         primarySwatch: Colors.indigo,
+        useMaterial3: true,
+        splashFactory: InkRipple.splashFactory
       ),
       initialRoute: SplashScreen.routeName,
       routes: {
