@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/ui/detail/webview.dart';
 import 'package:flutter_template/ui/home/tab_page.dart';
+import 'package:lottie/lottie.dart';
 
 class Tab2Page extends TabPage {
   const Tab2Page({Key? key, required int index}) : super(key: key, index: index);
@@ -13,24 +14,32 @@ class _Tab2State extends TabState<Tab2Page> {
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Text("Tab2"),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, WebViewScreen.routeName,
-                arguments: WebViewArguments(
-                  title: "엔씨소프트",
-                  url: "https://www.ncsoft.com"
-                )
-              );
-            },
-            child: const Text('웹뷰 오픈')
-          ),
-        ],
-      )
+    return Stack(
+      children: [
+        SizedBox(
+          height: double.infinity,
+          child: Lottie.asset('assets/lottie/snake_moving_confetti.json', fit: BoxFit.fill)
+        ),
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text("Tab2"),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, WebViewScreen.routeName,
+                    arguments: WebViewArguments(
+                      title: "엔씨소프트",
+                      url: "https://www.ncsoft.com"
+                    )
+                  );
+                },
+                child: const Text('웹뷰 오픈')
+              ),
+            ],
+          )
+        )
+      ]
     );
   }
 

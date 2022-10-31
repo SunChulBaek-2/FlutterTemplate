@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_template/ui/home/tab_page.dart';
 
 class Tab4Page extends TabPage {
@@ -24,6 +25,12 @@ class _Tab4State extends TabState<Tab4Page> {
             },
             child: const Text('Show SnackBar')
           ),
+          const Text('이것은 svg 이미지'),
+          SvgPicture.asset(
+            'assets/images/kuba_information_icons_set_1.svg',
+            width: 100,
+            height: 100
+          )
         ],
       )
     );
