@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/resources/resources.dart';
 import 'package:flutter_template/ui/detail/webview.dart';
 import 'package:flutter_template/ui/home/tab_page.dart';
 import 'package:lottie/lottie.dart';
@@ -18,7 +19,7 @@ class _Tab2State extends TabState<Tab2Page> {
       children: [
         SizedBox(
           height: double.infinity,
-          child: Lottie.asset('assets/lottie/snake_moving_confetti.json', fit: BoxFit.fill)
+          child: Lottie.asset(Lotties.snakeMovingConfetti, fit: BoxFit.fill)
         ),
         Center(
           child: Column(

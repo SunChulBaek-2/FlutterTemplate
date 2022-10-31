@@ -8,8 +8,14 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Run Spider
+          command: flutter pub global activate spider;spider build
+      - run:
+          name: Generate Code
+          command: flutter pub run build_runner build
+      - run:
           name: Build Binaries
-          command: flutter pub get;flutter pub run build_runner build;flutter build apk --build-name="1.0.0" --build-number=${CIRCLE_BUILD_NUM} --release;mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/FlutterTemplate-release-${CIRCLE_BUILD_NUM}.apk
+          command: flutter pub get;flutter build apk --build-name="1.0.0" --build-number=${CIRCLE_BUILD_NUM} --release;mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/FlutterTemplate-release-${CIRCLE_BUILD_NUM}.apk
       - slack/notify:
           event: fail
           template: basic_fail_1
