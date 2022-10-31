@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run:
           name: Run Spider
-          command: flutter pub global activate spider;$Home/.pub-cache/bin/spider build
+          command: flutter pub global activate spider;$HOME/.pub-cache/bin/spider build
       - run:
           name: Generate Code
           command: flutter pub run build_runner build
