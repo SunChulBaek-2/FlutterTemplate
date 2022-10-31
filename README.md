@@ -27,3 +27,5 @@
   * [freezed_annotation](https://pub.dev/packages/freezed_annotation)
   * [intl](https://pub.dev/packages/intl)
   * [logger](https://pub.dev/packages/logger)
+* Asset 관리
+  * [Spider](https://pub.dev/packages/spider)
