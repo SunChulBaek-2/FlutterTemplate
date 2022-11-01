@@ -12,7 +12,7 @@ class Products with _$Products {
   factory Products({
     @JsonKey(name: 'products') required List<Product> products,
     @JsonKey(name: 'total') required int total,
-    @JsonKey(name: 'skip') required String skip,
+    @JsonKey(name: 'skip') required int skip,
     @JsonKey(name: 'limit') required int limit,
   }) = _Products;
 

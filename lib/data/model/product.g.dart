@@ -11,7 +11,7 @@ Products _$ProductsFromJson(Map<String, dynamic> json) => Products(
           .map((e) => Product.fromJson(e as Map<String, dynamic>))
           .toList(),
       total: json['total'] as int,
-      skip: json['skip'] as String,
+      skip: json['skip'] as int,
       limit: json['limit'] as int,
     );
 

@@ -21,7 +21,7 @@ mixin _$Products {
   @JsonKey(name: 'total')
   int get total => throw _privateConstructorUsedError;
   @JsonKey(name: 'skip')
-  String get skip => throw _privateConstructorUsedError;
+  int get skip => throw _privateConstructorUsedError;
   @JsonKey(name: 'limit')
   int get limit => throw _privateConstructorUsedError;
 
@@ -38,7 +38,7 @@ abstract class $ProductsCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'products') List<Product> products,
       @JsonKey(name: 'total') int total,
-      @JsonKey(name: 'skip') String skip,
+      @JsonKey(name: 'skip') int skip,
       @JsonKey(name: 'limit') int limit});
 }
 
@@ -72,7 +72,7 @@ class _$ProductsCopyWithImpl<$Res, $Val extends Products>
       skip: null == skip
           ? _value.skip
           : skip // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       limit: null == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
@@ -91,7 +91,7 @@ abstract class _$$_ProductsCopyWith<$Res> implements $ProductsCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'products') List<Product> products,
       @JsonKey(name: 'total') int total,
-      @JsonKey(name: 'skip') String skip,
+      @JsonKey(name: 'skip') int skip,
       @JsonKey(name: 'limit') int limit});
 }
 
@@ -123,7 +123,7 @@ class __$$_ProductsCopyWithImpl<$Res>
       skip: null == skip
           ? _value.skip
           : skip // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       limit: null == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
@@ -155,7 +155,7 @@ class _$_Products implements _Products {
   final int total;
   @override
   @JsonKey(name: 'skip')
-  final String skip;
+  final int skip;
   @override
   @JsonKey(name: 'limit')
   final int limit;
@@ -191,7 +191,7 @@ abstract class _Products implements Products {
   factory _Products(
       {@JsonKey(name: 'products') required final List<Product> products,
       @JsonKey(name: 'total') required final int total,
-      @JsonKey(name: 'skip') required final String skip,
+      @JsonKey(name: 'skip') required final int skip,
       @JsonKey(name: 'limit') required final int limit}) = _$_Products;
 
   @override
@@ -202,7 +202,7 @@ abstract class _Products implements Products {
   int get total;
   @override
   @JsonKey(name: 'skip')
-  String get skip;
+  int get skip;
   @override
   @JsonKey(name: 'limit')
   int get limit;
