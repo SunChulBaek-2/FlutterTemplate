@@ -33,7 +33,7 @@ _i1.GetIt $initGetIt(
   final appModule = _$AppModule();
   gh.factory<_i3.BaseOptions>(() => apiModule.options);
   gh.factory<_i3.Dio>(() => apiModule.dio);
-  gh.factory<_i4.EventBus>(() => appModule.eventBus);
+  gh.singleton<_i4.EventBus>(appModule.eventBus);
   gh.factory<Map<String, dynamic>>(() => apiModule.headers);
   gh.factory<_i5.PrettyDioLogger>(() => apiModule.logger);
   gh.factory<_i6.ProductsState>(() => _i6.ProductsState.from());
