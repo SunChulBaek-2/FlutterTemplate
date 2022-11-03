@@ -21,7 +21,7 @@ class _RestClient implements RestClient {
   String? baseUrl;
 
   @override
-  Future<Products> getProducts(
+  Future<Response2<List<Product>>> getProducts(
     skip,
     limit,
   ) async {
@@ -32,8 +32,8 @@ class _RestClient implements RestClient {
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Products>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<Response2<List<Product>>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -45,7 +45,12 @@ class _RestClient implements RestClient {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = Products.fromJson(_result.data!);
+    final value = Response2<List<Product>>.fromJson(
+      _result.data!,
+      (json) => (json as List<dynamic>)
+          .map<Product>((i) => Product.fromJson(i as Map<String, dynamic>))
+          .toList(),
+    );
     return value;
   }
 

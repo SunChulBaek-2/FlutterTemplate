@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_template/data/model/product.dart';
+import 'package:flutter_template/data/model/response2.dart';
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 import 'package:retrofit/http.dart';
@@ -15,7 +16,7 @@ abstract class RestClient {
   factory RestClient.from(Dio dio) => RestClient(dio);
 
   @GET('products')
-  Future<Products> getProducts(
+  Future<Response2<List<Product>>> getProducts(
     @Query('skip') int skip,
     @Query('limit') int limit
   );
