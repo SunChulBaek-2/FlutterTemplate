@@ -10,7 +10,9 @@ import 'package:flutter_template/ui/home/tab1/bottom_loader.dart';
 import 'package:flutter_template/ui/home/tab1/product_list_item.dart';
 
 class Tab1Page extends TabPage {
-  const Tab1Page({Key? key, required int index}) : super(key: key, index: index);
+  const Tab1Page({Key? key, required int index, required this.onClickItem}) : super(key: key, index: index);
+
+  final void Function(BuildContext context, Object param) onClickItem;
 
   @override
   State<StatefulWidget> createState() => _Tab1State();
@@ -45,7 +47,10 @@ class _Tab1State extends TabState<Tab1Page> {
                     itemBuilder: (BuildContext context, int index) {
                       return index >= state.products.length
                         ? const BottomLoader()
-                        : ProductListItem(product: state.products[index]);
+                        : ProductListItem(
+                            product: state.products[index],
+                            onClick: widget.onClickItem
+                          );
                     },
                     itemCount: state.products.length,
                   )

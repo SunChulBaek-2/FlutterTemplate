@@ -4,9 +4,10 @@ import 'package:flutter_template/data/model/product.dart';
 import 'package:flutter_template/ui/detail/product.dart';
 
 class ProductListItem extends StatelessWidget {
-  const ProductListItem({super.key, required this.product});
+  const ProductListItem({super.key, required this.product, required this.onClick});
 
   final Product product;
+  final void Function(BuildContext context, Object param) onClick;
 
   @override
   Widget build(BuildContext context) {
@@ -43,20 +44,21 @@ class ProductListItem extends StatelessWidget {
             )
           ],
         ),
-        onTap: () => {
-          Navigator.pushNamed(context, ProductScreen.routeName, arguments: ProductParam(
-            images: product.images.where((image) => !image.contains("thumbnail")).toList(),
-            brand: product.brand,
-            category: product.category,
-            title: product.title,
-            desc: product.desc,
-            price: product.price,
-            discount: product.discount,
-            stock: product.stock,
-            rating: product.rating
-          ))
-        },
-      )
-    );
+        onTap: () => onClick.call(
+            context,
+            ProductParam(
+              images: product.images.where((image) => !image.contains("thumbnail")).toList(),
+              brand: product.brand,
+              category: product.category,
+              title: product.title,
+              desc: product.desc,
+              price: product.price,
+              discount: product.discount,
+              stock: product.stock,
+              rating: product.rating
+            )
+          )
+        )
+      );
   }
 }
