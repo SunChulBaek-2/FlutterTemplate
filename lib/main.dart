@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Template',
       theme: ThemeData(
+        fontFamily: 'Pretendard',
         primarySwatch: Colors.indigo,
         useMaterial3: true,
         splashFactory: InkRipple.splashFactory
