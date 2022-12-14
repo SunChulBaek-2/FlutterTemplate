@@ -51,7 +51,12 @@ class MyApp extends StatelessWidget {
           GoRoute(
             path: '/home',
             name: HomeScreen.routeName,
-            builder: (context, state) => const HomeScreen(title: 'Flutter Template')
+            builder: (context, state) => HomeScreen(
+              title: 'Flutter Template',
+              onClickProduct: (context, param) {
+                context.pushNamed(ProductScreen.routeName, extra: param as ProductParam);
+              },
+            )
           ),
           GoRoute(
             path: '/product',

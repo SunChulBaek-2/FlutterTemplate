@@ -20,11 +20,16 @@ class Tab {
 
 // 참고 : https://dopble2k.tistory.com/9
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key, required this.title});
+  const HomeScreen({
+    required this.title,
+    required this.onClickProduct,
+    super.key,
+  });
 
   static const routeName = "/home";
 
   final String title;
+  final void Function(BuildContext context, Object param) onClickProduct;
 
   @override
   State<HomeScreen> createState() => _HomeState();
@@ -36,10 +41,8 @@ class _HomeState extends State<HomeScreen> {
   final PageController _pageController = PageController();
 
   // index에 해당하는 더블탭 이벤트를 받음
-  final List<Tab> _tabs = <Tab>[
-    Tab(Icons.home_outlined, Icons.home, '탭1', Tab1Page(index: 0, onClickItem: (BuildContext context, Object param) {
-      context.pushNamed(ProductScreen.routeName, extra: param as ProductParam);
-    })),
+  List<Tab> get _tabs => <Tab>[
+    Tab(Icons.home_outlined, Icons.home, '탭1', Tab1Page(index: 0, onClickItem: widget.onClickProduct)),
     Tab(Icons.business_outlined, Icons.business, '탭2', const Tab2Page(index: 1)),
     Tab(Icons.school_outlined, Icons.school, '탭3', const Tab3Page(index: 2)),
     Tab(Icons.settings_outlined, Icons.settings, '탭4', const Tab4Page(index: 3))
