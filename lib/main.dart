@@ -32,7 +32,13 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Pretendard',
         primarySwatch: Colors.indigo,
         useMaterial3: true,
-        splashFactory: InkRipple.splashFactory
+        splashFactory: InkRipple.splashFactory,
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+          }
+        ),
       ),
       routerConfig: GoRouter(
         initialLocation: '/splash',
@@ -40,50 +46,25 @@ class MyApp extends StatelessWidget {
           GoRoute(
             path: '/splash',
             name: SplashScreen.routeName,
-            pageBuilder: (context, state) => defaultTransitionPage(
-              child: const SplashScreen()
-            ),
+            builder: (context, state) => const SplashScreen(),
           ),
           GoRoute(
             path: '/home',
             name: HomeScreen.routeName,
-            pageBuilder: (context, state) => defaultTransitionPage(
-              child: const HomeScreen(title: 'Flutter Template')
-            ),
+            builder: (context, state) => const HomeScreen(title: 'Flutter Template')
           ),
           GoRoute(
             path: '/product',
             name: ProductScreen.routeName,
-            pageBuilder: (context, state) => defaultTransitionPage(
-              child: ProductScreen(param: state.extra as ProductParam)
-            ),
+            builder: (context, state) => ProductScreen(param: state.extra as ProductParam),
           ),
           GoRoute(
             path: '/webview',
             name: WebViewScreen.routeName,
-            pageBuilder: (context, state) => defaultTransitionPage(
-              child: WebViewScreen(param: state.extra as WebViewParam)
-            )
+            builder: (context, state) => WebViewScreen(param: state.extra as WebViewParam),
           ),
         ]
       ),
     );
   }
-
-  CustomTransitionPage defaultTransitionPage({ required Widget child }) =>
-    CustomTransitionPage(
-      child: child,
-      transitionDuration: const Duration(milliseconds: 300),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(1.0, 0.0);
-        const end = Offset.zero;
-        const curve = Curves.ease;
-
-        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child
-        );
-      }
-    );
 }
