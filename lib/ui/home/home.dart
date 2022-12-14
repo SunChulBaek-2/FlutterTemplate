@@ -7,6 +7,7 @@ import 'package:flutter_template/ui/home/tab1/tab1.dart';
 import 'package:flutter_template/ui/home/tab2/tab2.dart';
 import 'package:flutter_template/ui/home/tab3/tab3.dart';
 import 'package:flutter_template/ui/home/tab4/tab4.dart';
+import 'package:go_router/go_router.dart';
 
 class Tab {
   IconData icon;
@@ -37,7 +38,7 @@ class _HomeState extends State<HomeScreen> {
   // index에 해당하는 더블탭 이벤트를 받음
   final List<Tab> _tabs = <Tab>[
     Tab(Icons.home_outlined, Icons.home, '탭1', Tab1Page(index: 0, onClickItem: (BuildContext context, Object param) {
-      Navigator.of(context).pushNamed(ProductScreen.routeName, arguments: (param as ProductParam));
+      context.pushNamed(ProductScreen.routeName, extra: param as ProductParam);
     })),
     Tab(Icons.business_outlined, Icons.business, '탭2', const Tab2Page(index: 1)),
     Tab(Icons.school_outlined, Icons.school, '탭3', const Tab3Page(index: 2)),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/resources/resources.dart';
 import 'package:flutter_template/ui/detail/webview.dart';
 import 'package:flutter_template/ui/home/tab_page.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
 class Tab2Page extends TabPage {
@@ -28,12 +29,12 @@ class _Tab2State extends TabState<Tab2Page> {
               const Text("Tab2"),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, WebViewScreen.routeName,
-                    arguments: WebViewArguments(
+                  context.pushNamed(
+                    WebViewScreen.routeName,
+                    extra: WebViewParam(
                       title: "엔씨소프트",
                       url: "https://www.ncsoft.com"
-                    )
-                  );
+                  ));
                 },
                 child: const Text('웹뷰 오픈')
               ),

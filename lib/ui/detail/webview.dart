@@ -1,22 +1,25 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class WebViewArguments {
-  WebViewArguments({required this.title, required this.url});
+class WebViewParam {
+  WebViewParam({required this.title, required this.url});
 
   String title;
   String url;
 }
 
 class WebViewScreen extends StatefulWidget {
-  const WebViewScreen({super.key, required this.title, required this.url});
+  const WebViewScreen({
+    required this.param,
+    super.key
+  });
 
   static const routeName = "/webview";
 
-  final String title;
-  final String url;
+  final WebViewParam param;
 
   @override
   State<StatefulWidget> createState() => _WebViewState();
@@ -41,15 +44,15 @@ class _WebViewState extends State<WebViewScreen> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).pop();
+            context.pop();
           },
         ),
-        title: Text(widget.title)
+        title: Text(widget.param.title)
       ),
       body: Stack(
         children: <Widget>[
           WebView(
-            initialUrl: widget.url,
+            initialUrl: widget.param.url,
             javascriptMode: JavascriptMode.unrestricted,
             onPageFinished: (url) {
               setState(() {

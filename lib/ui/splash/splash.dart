@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/ui/home/home.dart';
+import 'package:go_router/go_router.dart';
 
 // 스플래시 화면. splashDelay 시간 이후에 홈으로 이동
 
@@ -19,7 +21,7 @@ class _SplashState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: splashDelay), () {
-      Navigator.pushReplacementNamed(context, "/home");
+      context.goNamed(HomeScreen.routeName);
     });
   }
 
