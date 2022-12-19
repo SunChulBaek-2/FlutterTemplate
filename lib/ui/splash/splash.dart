@@ -16,13 +16,20 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashState extends State<SplashScreen> {
+  late Future move;
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: splashDelay), () {
+    move = Future.delayed(const Duration(seconds: splashDelay), () {
       context.goNamed(HomeScreen.routeName);
     });
+  }
+
+  @override
+  void dispose() {
+    move.ignore();
+    super.dispose();
   }
 
   @override

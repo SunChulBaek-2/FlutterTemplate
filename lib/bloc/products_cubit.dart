@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_template/bloc/result_status.dart';
+import 'package:flutter_template/bloc/model/state_base.dart';
 import 'package:flutter_template/data/model/product.dart';
 import 'package:flutter_template/data/repository.dart';
 import 'package:flutter_template/util/timber.dart';
@@ -10,32 +10,32 @@ part 'products_cubit.freezed.dart';
 
 @freezed
 @injectable
-class ProductsState with _$ProductsState {
-  factory ProductsState({
-    required ResultStatus status,
+class ProductsData with _$ProductsData {
+  factory ProductsData({
     required List<Product> products
-  }) = _ProductsState;
+  }) = _ProductsData;
 
   @factoryMethod
-  factory ProductsState.from() => ProductsState(status: ResultStatus.initial, products: List.of([]));
+  factory ProductsData.from() => ProductsData(products: List.of([]));
 }
 
 @injectable
-class ProductsCubit extends Cubit<ProductsState> {
-  ProductsCubit(this._repository, ProductsState state) : super(state);
+class ProductsCubit extends Cubit<StateXBase> {
+  ProductsCubit(this._repository, StateXBase state) : super(state);
 
   final Repository _repository;
 
   void init([int skip = 0, int limit = 30]) async {
     try {
       final products = await _repository.getProducts(skip, limit);
-      return emit(state.copyWith(
-          status: ResultStatus.success,
+      return emit(StateX(
+        data: ProductsData(
           products: products.products
+        )
       ));
     } catch (e) {
       Timber.e(e);
-      emit(state.copyWith(status: ResultStatus.failure));
+      emit(StateXError());
     }
   }
 }

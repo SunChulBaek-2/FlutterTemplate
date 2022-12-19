@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/bloc/result_status.dart';
+import 'package:flutter_template/bloc/model/state_base.dart';
 import 'package:flutter_template/injectable.dart';
-import 'package:flutter_template/ui/common/error.dart';
-import 'package:flutter_template/ui/common/loading.dart';
+import 'package:flutter_template/ui/common/state_view.dart';
 import 'package:flutter_template/ui/home/tab_page.dart';
 import 'package:flutter_template/bloc/products_cubit.dart';
 import 'package:flutter_template/ui/home/tab1/bottom_loader.dart';
@@ -27,40 +26,36 @@ class _Tab1State extends TabState<Tab1Page> {
     super.build(context);
     return BlocProvider(
       create: (_) => _productsCubit,
-      child: BlocBuilder<ProductsCubit, ProductsState>(
+      child: BlocBuilder<ProductsCubit, StateXBase>(
         builder: (context, state) {
-          switch (state.status) {
-            case ResultStatus.initial:
-              return const LoadingScreen();
-            case ResultStatus.failure:
-              return const ErrorScreen();
-            case ResultStatus.success:
-              if (state.products.isEmpty) {
-                return const Center(child: Text('No products'));
-              }
-              return RefreshIndicator(
-                child: Scrollbar(
-                  thumbVisibility: true,
+          final products = state is StateX ? (state as StateX<ProductsData>).data.products : null;
+          return StateView(
+            state: state,
+            child: (products?.isEmpty ?? true)
+              ? const Center(child: Text('No products'))
+              : RefreshIndicator(
+              child: Scrollbar(
+                thumbVisibility: true,
+                controller: _scrollController,
+                child: ListView.builder(
                   controller: _scrollController,
-                  child: ListView.builder(
-                    controller: _scrollController,
-                    itemBuilder: (BuildContext context, int index) {
-                      return index >= state.products.length
-                        ? const BottomLoader()
-                        : ProductListItem(
-                            product: state.products[index],
-                            onClick: widget.onClickItem
-                          );
-                    },
-                    itemCount: state.products.length,
-                  )
-                ),
-                onRefresh: () async {
-                  showSnackBar("리프레시!!!");
-                  _productsCubit.init();
-                }
-              );
-          }
+                  itemBuilder: (BuildContext context, int index) {
+                    return index >= products!.length
+                      ? const BottomLoader()
+                      : ProductListItem(
+                      product: products[index],
+                      onClick: widget.onClickItem
+                    );
+                  },
+                  itemCount: products!.length,
+                )
+              ),
+              onRefresh: () async {
+                showSnackBar("리프레시!!!");
+                _productsCubit.init();
+              }
+            )
+          );
         }
       )
     );

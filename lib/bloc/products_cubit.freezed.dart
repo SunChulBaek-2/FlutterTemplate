@@ -15,28 +15,27 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ProductsState {
-  ResultStatus get status => throw _privateConstructorUsedError;
+mixin _$ProductsData {
   List<Product> get products => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ProductsStateCopyWith<ProductsState> get copyWith =>
+  $ProductsDataCopyWith<ProductsData> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProductsStateCopyWith<$Res> {
-  factory $ProductsStateCopyWith(
-          ProductsState value, $Res Function(ProductsState) then) =
-      _$ProductsStateCopyWithImpl<$Res, ProductsState>;
+abstract class $ProductsDataCopyWith<$Res> {
+  factory $ProductsDataCopyWith(
+          ProductsData value, $Res Function(ProductsData) then) =
+      _$ProductsDataCopyWithImpl<$Res, ProductsData>;
   @useResult
-  $Res call({ResultStatus status, List<Product> products});
+  $Res call({List<Product> products});
 }
 
 /// @nodoc
-class _$ProductsStateCopyWithImpl<$Res, $Val extends ProductsState>
-    implements $ProductsStateCopyWith<$Res> {
-  _$ProductsStateCopyWithImpl(this._value, this._then);
+class _$ProductsDataCopyWithImpl<$Res, $Val extends ProductsData>
+    implements $ProductsDataCopyWith<$Res> {
+  _$ProductsDataCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -46,14 +45,9 @@ class _$ProductsStateCopyWithImpl<$Res, $Val extends ProductsState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
     Object? products = null,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as ResultStatus,
       products: null == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
@@ -63,35 +57,30 @@ class _$ProductsStateCopyWithImpl<$Res, $Val extends ProductsState>
 }
 
 /// @nodoc
-abstract class _$$_ProductsStateCopyWith<$Res>
-    implements $ProductsStateCopyWith<$Res> {
-  factory _$$_ProductsStateCopyWith(
-          _$_ProductsState value, $Res Function(_$_ProductsState) then) =
-      __$$_ProductsStateCopyWithImpl<$Res>;
+abstract class _$$_ProductsDataCopyWith<$Res>
+    implements $ProductsDataCopyWith<$Res> {
+  factory _$$_ProductsDataCopyWith(
+          _$_ProductsData value, $Res Function(_$_ProductsData) then) =
+      __$$_ProductsDataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ResultStatus status, List<Product> products});
+  $Res call({List<Product> products});
 }
 
 /// @nodoc
-class __$$_ProductsStateCopyWithImpl<$Res>
-    extends _$ProductsStateCopyWithImpl<$Res, _$_ProductsState>
-    implements _$$_ProductsStateCopyWith<$Res> {
-  __$$_ProductsStateCopyWithImpl(
-      _$_ProductsState _value, $Res Function(_$_ProductsState) _then)
+class __$$_ProductsDataCopyWithImpl<$Res>
+    extends _$ProductsDataCopyWithImpl<$Res, _$_ProductsData>
+    implements _$$_ProductsDataCopyWith<$Res> {
+  __$$_ProductsDataCopyWithImpl(
+      _$_ProductsData _value, $Res Function(_$_ProductsData) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
     Object? products = null,
   }) {
-    return _then(_$_ProductsState(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as ResultStatus,
+    return _then(_$_ProductsData(
       products: null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
@@ -102,13 +91,10 @@ class __$$_ProductsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ProductsState implements _ProductsState {
-  _$_ProductsState(
-      {required this.status, required final List<Product> products})
+class _$_ProductsData implements _ProductsData {
+  _$_ProductsData({required final List<Product> products})
       : _products = products;
 
-  @override
-  final ResultStatus status;
   final List<Product> _products;
   @override
   List<Product> get products {
@@ -118,40 +104,36 @@ class _$_ProductsState implements _ProductsState {
 
   @override
   String toString() {
-    return 'ProductsState(status: $status, products: $products)';
+    return 'ProductsData(products: $products)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProductsState &&
-            (identical(other.status, status) || other.status == status) &&
+            other is _$_ProductsData &&
             const DeepCollectionEquality().equals(other._products, _products));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, status, const DeepCollectionEquality().hash(_products));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProductsStateCopyWith<_$_ProductsState> get copyWith =>
-      __$$_ProductsStateCopyWithImpl<_$_ProductsState>(this, _$identity);
+  _$$_ProductsDataCopyWith<_$_ProductsData> get copyWith =>
+      __$$_ProductsDataCopyWithImpl<_$_ProductsData>(this, _$identity);
 }
 
-abstract class _ProductsState implements ProductsState {
-  factory _ProductsState(
-      {required final ResultStatus status,
-      required final List<Product> products}) = _$_ProductsState;
+abstract class _ProductsData implements ProductsData {
+  factory _ProductsData({required final List<Product> products}) =
+      _$_ProductsData;
 
-  @override
-  ResultStatus get status;
   @override
   List<Product> get products;
   @override
   @JsonKey(ignore: true)
-  _$$_ProductsStateCopyWith<_$_ProductsState> get copyWith =>
+  _$$_ProductsDataCopyWith<_$_ProductsData> get copyWith =>
       throw _privateConstructorUsedError;
 }
